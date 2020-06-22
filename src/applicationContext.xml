@@ -10,7 +10,7 @@
 	<!-- Define your beans here -->
 
 	<bean id="myCoach"
-		class="spring.exercise.springdemo.TrackCoach"></bean>
+		class="spring.exercise.springdemo.SumoCoach"></bean>
 
 	<!-- define the dependency -->
 
