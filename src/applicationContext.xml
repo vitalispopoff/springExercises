@@ -9,9 +9,15 @@
 
 	<!-- Define your beans here -->
 
-	<bean id="myCoach"
-		class="spring.exercise.springdemo.SumoCoach"></bean>
+	<!-- definition of dependency -->
 
-	<!-- define the dependency -->
+	<bean id="myFortune"
+		class="spring.exercise.springdemo.HappyFortuneService">
+	</bean>
 
+	<bean id="myCoach" class="spring.exercise.springdemo.TrackCoach">
+
+		<!-- construction injection setup -->
+		<constructor-arg ref="myFortune" />
+	</bean>
 </beans>
