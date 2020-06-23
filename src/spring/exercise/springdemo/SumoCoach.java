@@ -8,4 +8,10 @@ public class SumoCoach implements Coach {
 		return "Gain 50 pounds of a body mass";
 	}
 
+	@Override
+	public String getDailyFortune() {
+		
+		return null;
+		
+	}
 }
