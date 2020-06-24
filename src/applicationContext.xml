@@ -7,40 +7,6 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- properties file loader -->
 
-	<context:property-placeholder
-		location="classpath:sport.properties" />
-
-	<!-- Define your beans here -->
-
-	<!-- definition of dependency -->
-
-	<bean id="myAverageFortuneService"
-		class="spring.exercise.springdemo.AverageFortuneService">
-	</bean>
-
-	<bean id="myFortuneService"
-		class="spring.exercise.springdemo.HappyFortuneService">
-	</bean>
-
-	<bean id="myCoach" class="spring.exercise.springdemo.TrackCoach">
-		<!-- construction injection setup -->
-		<constructor-arg ref="myFortuneService" />
-	</bean>
-
-	<bean id="mySumoCoach" class="spring.exercise.springdemo.SumoCoach">
-		<property name="fortuneService" ref="myAverageFortuneService" />
-	</bean>
-
-	<bean id="myCricketCoach"
-		class="spring.exercise.springdemo.CricketCoach">
-
-		<!-- injection setup -->
-		<property name="fortuneService" ref="myFortuneService" />
-
-		<property name="emailAddress" value="${foo.email}" />
-		<property name="team" value="${foo.team}" />
-	</bean>
 
 </beans>
