@@ -3,18 +3,30 @@ package spring.exercise.springdemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component // the annotations uses the default bean id ("tennisCoach") now
+@Component
 public class TennisCoach implements Coach {
 	
+	@Autowired
 	private FortuneService fortuneService;
 	
-	public TennisCoach() {}
-	
-	@Autowired	// calls spring to look for the interface/class declaring/implementing the fortuneService
-	public TennisCoach(FortuneService fortuneService) {
-		super();
-		this.fortuneService = fortuneService;
+	public TennisCoach() {
+		System.out.println(" ... "+this.getClass()+" : default contructor");
 	}
+		
+	/* parametrized constructor
+	 *
+	 * @Autowired public TennisCoach(FortuneService fortuneService) { super();
+	 * this.fortuneService = fortuneService; }
+	 */
+	
+	/*	autowired setter
+	 * // define a setter method
+	 * 
+	 * @Autowired public void doSomeCrazyStuff(FortuneService fortuneService) {
+	 * System.out.println(" ... "+this.getClass()+" : doSomeCrazyStuff");
+	 * this.fortuneService = fortuneService; }
+	 * 
+	 */
 	
 	@Override
 	public String getDailyWorkout() {
