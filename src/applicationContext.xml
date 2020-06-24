@@ -11,13 +11,24 @@
 
 	<!-- definition of dependency -->
 
-	<bean id="myFortune"
+	<bean id="myFortuneService"
 		class="spring.exercise.springdemo.HappyFortuneService">
+		
 	</bean>
 
-	<bean id="myCoach" class="spring.exercise.springdemo.TrackCoach">
+	<bean id="myCoach" 
+		class="spring.exercise.springdemo.TrackCoach">
 
 		<!-- construction injection setup -->
-		<constructor-arg ref="myFortune" />
+		<constructor-arg ref="myFortuneService" />
 	</bean>
+
+	<bean id="myCricketCoach"
+		class="spring.exercise.springdemo.CricketCoach">
+
+		<!-- setter injection setup -->
+		<property name="fortuneService" ref="myFortuneService" />
+
+	</bean>
+
 </beans>
