@@ -1,6 +1,23 @@
 package spring.exercise.springdemo;
 
 public class SumoCoach implements Coach {
+	
+	private FortuneService
+		fortuneService;
+	
+	public SumoCoach() {
+		System.out.println("... SumoCoach : constructor");
+	}
+	
+	
+
+	public FortuneService getFortuneService() {
+		return fortuneService;
+	}
+
+	public void setFortuneService(FortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
 
 	@Override
 	public String getDailyWorkout() {
@@ -11,7 +28,7 @@ public class SumoCoach implements Coach {
 	@Override
 	public String getDailyFortune() {
 		
-		return null;
+		return fortuneService.getFortune();
 		
 	}
 }
