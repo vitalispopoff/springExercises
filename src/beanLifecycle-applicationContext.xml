@@ -19,6 +19,7 @@
 	<bean 
 		id="myCoach" 
 		class="spring.exercise.springdemo.TrackCoach" 
+		scope="prototype"
 		init-method="doMyStartupStuff"
 		destroy-method="doMyCleanupStuffYoYo"
 	>

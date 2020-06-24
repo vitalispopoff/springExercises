@@ -19,6 +19,8 @@ public class BeanLifeCycleDemoApp {
 		//		close the context
 		
 		context.close();
+		
+		System.out.println("\nMemory location for theCoach :"+ context);
 
 	}
 }
