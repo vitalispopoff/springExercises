@@ -9,4 +9,12 @@ public class ChessCoach implements Coach {
 	public String getDailyWorkout() {	
 		return "Analyze all possible responses for the openings of a particular games";
 	}
+
+	@Override
+	public String getDailyFortune() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }
