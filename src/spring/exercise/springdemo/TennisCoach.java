@@ -1,9 +1,11 @@
 package spring.exercise.springdemo;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
 public class TennisCoach implements Coach {
 	
 	@Autowired
