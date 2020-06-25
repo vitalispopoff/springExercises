@@ -34,7 +34,7 @@ public class DatabaseFortuneService implements FortuneService {
 	@PostConstruct
 	public void setFortuneData() {
 		
-		System.out.println(" ..."+this.getClass()+" : @postConstruct call");
+		System.out.println(" ..."+this.getClass()+" : @postConstruct setFortuneData");
 		String 
 			source = "src\\externalFortunes.txt";
 		
