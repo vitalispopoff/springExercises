@@ -14,7 +14,7 @@ public class TennisCoach implements Coach {
 		System.out.println(" ... "+this.getClass()+" : default contructor");
 	}
 		
-	/* parametrized constructor
+	/* parameterized constructor
 	 *
 	 * @Autowired public TennisCoach(FortuneService fortuneService) { super();
 	 * this.fortuneService = fortuneService; }

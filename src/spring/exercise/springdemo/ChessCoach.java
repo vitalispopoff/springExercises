@@ -1,9 +1,15 @@
 package spring.exercise.springdemo;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ChessCoach implements Coach {
+	
+	@Autowired
+	@Qualifier("databaseFortuneService")
+	FortuneService
+		fortuneService;
 
 	@Override
 	public String getDailyWorkout() {	
@@ -13,6 +19,6 @@ public class ChessCoach implements Coach {
 	@Override
 	public String getDailyFortune() {
 
-		return null;
+		return fortuneService.getFortune();
 	}	
 }

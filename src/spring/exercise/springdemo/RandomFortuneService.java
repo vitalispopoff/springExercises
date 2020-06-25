@@ -14,15 +14,11 @@ public class RandomFortuneService implements FortuneService {
 			"The journey is the reward" 
 	};
 	
-//	create a random number generator
-	
+	//	create a random number generator	
 	private Random myRandom = new Random();
 	
-	
-
 	@Override
 	public String getFortune() {
-
 		int 
 			index = myRandom.nextInt(data.length);		
 		String 
@@ -30,5 +26,4 @@ public class RandomFortuneService implements FortuneService {
 
 		return theFortune;
 	}
-
 }
