@@ -1,5 +1,7 @@
 package spring.exercise.springdemo;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AnnotationDemoApp {
@@ -21,4 +23,6 @@ public class AnnotationDemoApp {
 		// close the bean
 		context.close();
 	}
+	
+
 }

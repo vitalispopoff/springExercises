@@ -2,6 +2,9 @@ package spring.exercise.springdemo;
 
 import java.io.IOException;
 import java.util.stream.Stream;
+
+import javax.annotation.PostConstruct;
+
 import java.nio.file.*;
 import java.util.*;
 
@@ -18,7 +21,7 @@ public class DatabaseFortuneService implements FortuneService {
 	
 	@Override
 	public String getFortune() {
-		if (fortuneData.size()==0) setFortuneData();
+//		if (fortuneData.size()==0) setFortuneData();
 				
 		int 
 			index = myRandom.nextInt(fortuneData.size());		
@@ -28,7 +31,10 @@ public class DatabaseFortuneService implements FortuneService {
 		return theFortune;
 	}
 	
+	@PostConstruct
 	public void setFortuneData() {
+		
+		System.out.println(" ..."+this.getClass()+" : @postConstruct call");
 		String 
 			source = "src\\externalFortunes.txt";
 		

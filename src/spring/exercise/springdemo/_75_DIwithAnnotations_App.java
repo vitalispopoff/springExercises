@@ -1,5 +1,7 @@
 package spring.exercise.springdemo;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class _75_DIwithAnnotations_App {
