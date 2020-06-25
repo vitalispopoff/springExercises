@@ -3,7 +3,7 @@ package spring.exercise.springdemo;
 import org.springframework.context.annotation.*;
 
 @Configuration
-//@ComponentScan("spring.exercise.springdemo")	// commenting it out as no autoscans are to be run 
+@PropertySource("classpath:sport.properties")
 public class SportConfig {
 
 	//	define bean for the sadFortuneService
