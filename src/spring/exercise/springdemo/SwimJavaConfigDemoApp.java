@@ -1,7 +1,5 @@
 package spring.exercise.springdemo;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SwimJavaConfigDemoApp {
@@ -23,6 +21,4 @@ public class SwimJavaConfigDemoApp {
 		// close the bean
 		context.close();
 	}
-	
-
 }

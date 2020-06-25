@@ -1,10 +1,8 @@
 package spring.exercise.springdemo;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import javax.annotation.*;
 
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +16,7 @@ public class TennisCoach implements Coach {
 		System.out.println(" ..."+this.getClass()+" : default contructor");
 	}
 		
-	//	define my init method
+	//	define my initial method
 	
 	@PostConstruct
 	public void doMyStartupStuff() {
@@ -31,22 +29,7 @@ public class TennisCoach implements Coach {
 	public void doMyCleanupStuff() {
 		System.out.println(" ..."+this.getClass()+ " : @PreDestroy - doMyCleanupStuff ");
 	}
-		
-	/* parameterized constructor
-	 *
-	 * @Autowired public TennisCoach(FortuneService fortuneService) { super();
-	 * this.fortuneService = fortuneService; }
-	 */
-	
-	/*	autowired setter
-	 * // define a setter method
-	 * 
-	 * @Autowired public void doSomeCrazyStuff(FortuneService fortuneService) {
-	 * System.out.println(" ... "+this.getClass()+" : doSomeCrazyStuff");
-	 * this.fortuneService = fortuneService; }
-	 * 
-	 */
-	
+			
 	@Override
 	public String getDailyWorkout() {
 		return "Practice your backhand volley";
