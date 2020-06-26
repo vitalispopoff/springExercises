@@ -11,6 +11,13 @@
 		
 		<br><br>
 		
-		Free passes: ${customer.freePasses}		
+		Free passes: ${customer.freePasses}
+		
+		<br><br>
+		
+		Postal code <i>${customer.postalCode}</i> is confirmed.		
+		
+		<br><br>
+		
 	</body>
 </html>

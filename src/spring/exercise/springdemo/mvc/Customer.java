@@ -16,8 +16,13 @@ public class Customer {
 	@Max(value=10, message="mustn't be greater than 10")
 	private int 
 		freePasses;
-
 	
+
+	@Pattern(regexp="^[0-9]{5}", message="exactly 5 digits")
+	private String 
+		postalCode;
+	
+
 	
 	public Customer() {}
 	
@@ -46,5 +51,13 @@ public class Customer {
 	public void setFreePasses(int freePasses) {
 		this.freePasses = freePasses;
 	}
+	
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}	
 	
 }
