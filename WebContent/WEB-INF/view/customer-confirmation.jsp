@@ -8,5 +8,9 @@
 
 	<body>
 		The customer <i>${customer.firstName} ${customer.lastName}</i> is confirmed now.
+		
+		<br><br>
+		
+		Free passes: ${customer.freePasses}		
 	</body>
 </html>

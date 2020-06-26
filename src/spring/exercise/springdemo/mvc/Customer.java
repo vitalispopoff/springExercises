@@ -11,6 +11,11 @@ public class Customer {
 	@Size(min=1, message="is required")
 	private String
 		lastName;
+		
+	@Min(value=0, message="must be a positive value")
+	@Max(value=10, message="mustn't be greater than 10")
+	private int 
+		freePasses;
 
 	
 	
@@ -32,6 +37,14 @@ public class Customer {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public int getFreePasses() {
+		return freePasses;
+	}
+
+	public void setFreePasses(int freePasses) {
+		this.freePasses = freePasses;
 	}
 	
 }
