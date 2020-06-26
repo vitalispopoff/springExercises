@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloWorldController {
@@ -25,19 +25,20 @@ public class HelloWorldController {
 	
 	//	controller method to read form data and adata to the model 
 	
-	@RequestMapping("/processFormVersionTwo")
-	public String letsShoutDude(HttpServletRequest request, Model model) {
+	@RequestMapping("/processFormVersionThree")
+	public String processFormVerionThree(@RequestParam("studentName") String theName, Model model) {
 		
-		//	read the request parameter from the HTML form	
-		String 
-			theName = request.getParameter("studentName");
+		/*
+		 * // read the request parameter from the HTML form String theName =
+		 * request.getParameter("studentName");
+		 */	// disposable because of the @RequestParam annotation above.
 		
 		// convert the data to all caps
 		theName = theName.toUpperCase();
 		
 		//	create the message
 		String 
-			result = "Yo! " + theName;
+			result = "Yo again! " + theName + " (v3 ya kno)";
 		
 		//	add the message to the model		
 		model.addAttribute("message", result);
