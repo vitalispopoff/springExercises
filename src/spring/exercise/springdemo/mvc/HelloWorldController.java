@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/hello")
 public class HelloWorldController {
 
 	// controller method to show the initial html form
