@@ -37,12 +37,9 @@ public class CustomerController {
 	@RequestMapping("/processForm")
 	public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer, BindingResult theBindingResult) {
 
-//		System.out.println("... lastName |" + theCustomer.getLastName() + "|");
-
+		//	System.out.println("... lastName |" + theCustomer.getLastName() + "|");
 		System.out.println("\n____________________\n\n");
-		
 		System.out.println("...Binding resuld: " + theBindingResult);
-		
 		System.out.println("\n____________________\n\n");
 		
 		return theBindingResult.hasErrors() ? "customer-form" : "customer-confirmation";

@@ -4,60 +4,31 @@ import javax.validation.constraints.*;
 
 public class Customer {
 
-	private String
-		firstName;
-	
-	@NotNull(message="field required")
-	@Size(min=1, message="field required")
-	private String
-		lastName;
-		
-	@NotNull(message="field required")
-	@Min(value=0, message="must be a positive value")
-	@Max(value=10, message="mustn't be greater than 10")
-	private Integer 
-		freePasses;
-	
-	@Pattern(regexp="^[0-9]{5}", message="exactly 5 digits")
-	private String 
-		postalCode;
-	
+	private String firstName;
 
+	@NotNull(message = "Field required")
+	@Size(min = 1, message = "Field required")
+	private String lastName;
 	
-	public Customer() {}
+	@Pattern(regexp = "^[0-9]{5}", message = "exactly 5 digits")
+	private String postalCode;
+
+	@NotNull(message = "Field required")
+	@Min(value = 0, message = "Write a positive value")
+	@Max(value = 10, message = "Write a value not greater than 10")
+	private Integer freePasses;
+
+	//	@formatter:off
 	
+	public String getFirstName() {return firstName;}
+	public String getLastName() {return lastName;}	
+	public String getPostalCode() {return postalCode;}	
+	public Integer getFreePasses() {return freePasses;}	
 	
-		
-	public String getFirstName() {
-		return firstName;
-	}
+	public void setFirstName(String firstName) {this.firstName = firstName;}
+	public void setLastName(String lastName) {this.lastName = lastName;}
+	public void setFreePasses(Integer freePasses) {this.freePasses = freePasses;}
+	public void setPostalCode(String postalCode) {this.postalCode = postalCode;}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Integer getFreePasses() {
-		return freePasses;
-	}
-
-	public void setFreePasses(Integer freePasses) {
-		this.freePasses = freePasses;
-	}
-	
-	public String getPostalCode() {
-		return postalCode;
-	}
-
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}	
-	
+	//	@formatter:on		
 }
