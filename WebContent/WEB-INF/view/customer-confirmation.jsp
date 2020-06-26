@@ -19,5 +19,7 @@
 		
 		<br><br>
 		
+		Course code <i>${customer.courseCode}</i> is confirmed.
+		
 	</body>
 </html>
