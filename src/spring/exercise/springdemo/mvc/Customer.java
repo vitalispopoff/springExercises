@@ -19,7 +19,7 @@ public class Customer {
 	@Max(value = 10, message = "Write a value not greater than 10")
 	private Integer freePasses;
 	
-	@CourseCode
+	@CourseCode(value="TOPS", message="must start with TOPS")
 	private String courseCode;
 
 	//	@formatter:off
