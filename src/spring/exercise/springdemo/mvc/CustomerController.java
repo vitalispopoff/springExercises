@@ -21,7 +21,7 @@ public class CustomerController {
 
 	@RequestMapping("/processForm")
 	public String processForm(
-			@Valid @ModelAttribute("cutomer") Customer theCustomer,
+			@Valid @ModelAttribute("customer") Customer theCustomer,
 			BindingResult theBindingResult) {
 		
 		return theBindingResult.hasErrors() ? "customer-form": "customer-confirmation";

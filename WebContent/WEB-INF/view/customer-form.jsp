@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- <!DOCTYPE html> -->
 
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -31,7 +31,6 @@
 			<input type="submit" value="Submit" />
 		
 		</form:form>
-
 
 	</body>
 
