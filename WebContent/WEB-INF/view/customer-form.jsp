@@ -15,11 +15,13 @@
 	
 		Fill out the form, please. Fields with an asterisk (*) are required. 
 		
+		<br><br>
+		
 		<form:form action="processForm" modelAttribute="customer">
 		
 			First name: <form:input path="firstName" />
 			
-			<br>
+			<br><br>
 			
 			Last name (*): <form:input path="lastName" />
 			<form:errors path="lastName" cssClass="error" />
