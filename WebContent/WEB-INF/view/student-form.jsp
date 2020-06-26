@@ -8,7 +8,7 @@
 
 	<body>
 
-		<form:form action="process" modelAttribute="student">
+		<form:form action="processForm" modelAttribute="student">
 		
 			First name: <form:input path="firstName" />
 			
