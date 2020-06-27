@@ -22,43 +22,50 @@ public class QueryStudentDemo {
 		Session session = factory.getCurrentSession();
 		
 		try {
+			
+			List<Student> 
+				theStudents;
 
 			//	start a transaction
 			session.beginTransaction();
 			
-			//	query students
-			
-			List<Student> theStudents = session.createQuery("from Student").getResultList();
-			
-			//	display students
+			//	query students			
+			theStudents = session.createQuery("from Student").getResultList();
 
-//			displayStudents(theStudents);
+			displayStudents(theStudents);
 			
-			System.out.println("-----------");
-			
-			// query students : lastName = 'Doe'			
+			//	query students by lastName
 			theStudents = session.createQuery("from Student s where s.lastName='Duck'").getResultList();
-			//	commit transaction
-			session.getTransaction().commit();
 			
 			displayStudents(theStudents);
 			
-			System.out.println("-----------");
-				
-			System.out.println("...done");
+			//	query students by lastName OR firstName
 			
+			theStudents = session.createQuery("from Student s where s.firstName='John' OR s.lastName='Tone'").getResultList();
+			
+			displayStudents(theStudents);
+			
+			// query students by lastName AND firstName
+			
+			theStudents = session.createQuery("from Student s where s.firstName='John' AND s.lastName='Tone'").getResultList();
+			
+			displayStudents(theStudents);
+			
+			//	query students by email part
+			
+			theStudents = session.createQuery("from Student s where s.email LIKE  '%duck.com'").getResultList();
+			
+			displayStudents(theStudents);
+						
 		}
 		finally {
-			factory.close();
-			
-			System.out.println("...session closed.");
-			
-		}
-		
-
+			factory.close();			
+		}		
 	}
 
 	private static void displayStudents(List<Student> theStudents) {
-		for(Student tempStudent : theStudents) System.out.println("\n"+tempStudent);
+		System.out.println("-----------");
+		for(Student tempStudent : theStudents) System.out.println(tempStudent);
+		System.out.println("-----------");
 	}
 }
