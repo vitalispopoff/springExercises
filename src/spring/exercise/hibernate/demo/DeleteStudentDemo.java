@@ -24,7 +24,8 @@ public class DeleteStudentDemo {
 			session = factory.getCurrentSession();
 			session.beginTransaction();
 			
-			session.createQuery("delete from Student where email='"+email+"'").executeUpdate();		
+//			session.createQuery("delete from Student where email='"+email+"'").executeUpdate();
+			session.createQuery("delete from Student").executeUpdate();
 			
 			session.getTransaction().commit();
 		}

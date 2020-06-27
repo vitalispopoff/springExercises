@@ -17,9 +17,10 @@ public class CreateStudentDemo {
 						.buildSessionFactory();		
 
 		//	create session
-		Session session = factory.getCurrentSession();
+		Session session;
 		
 		try {
+			session = factory.getCurrentSession();
 			//	create a student object
 			
 			System.out.println("...creating a student object");
