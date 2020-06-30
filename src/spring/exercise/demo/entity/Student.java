@@ -53,8 +53,7 @@ public class Student {
 		@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
-	}
-	
+	}	
 }
 	
 //	@formatter:on	

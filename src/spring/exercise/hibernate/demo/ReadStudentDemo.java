@@ -34,8 +34,7 @@ public class ReadStudentDemo {
 						
 			//	commit transaction
 			session.getTransaction().commit();
-			
-			
+						
 //	retrieve
 			
 			//	find out the student's id : PK
@@ -54,8 +53,7 @@ public class ReadStudentDemo {
 			
 			//	commit the transaction
 			session.getTransaction().commit();
-			
-				
+							
 			System.out.println("...done");
 			
 		}
