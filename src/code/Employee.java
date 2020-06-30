@@ -2,6 +2,9 @@
 
 package code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
@@ -92,6 +95,28 @@ public class Employee {
 			e.printStackTrace();
 			 result = new Employee();
 		} 
+		finally {
+			session.close();
+			factory.close();
+		}
+		return result;
+	}
+	
+	//	find
+	public static List<Employee> findEmployee(String company) {
+		List<Employee>
+			result;
+		String
+			query = "from Employee s where company='".concat(company).concat("'");
+		
+		try {
+			getSession().beginTransaction();
+			result = session.createQuery(query).getResultList();			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			result = new ArrayList<Employee>();
+			}
 		finally {
 			session.close();
 			factory.close();
