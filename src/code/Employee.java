@@ -44,13 +44,21 @@ public class Employee {
 
 	public Employee() {
 	}
-	
-
-	
+		
 	public Employee(String firstName, String lastName, String company) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.company = company;
+		
+	}
+	
+//	methods
+	
+	public static void resetConnection() {
+		factory = null;
+		session = null;
+		config = null;
+		config = new Configuration().configure(configFile);
 	}
 
 //	CRUD
@@ -61,9 +69,11 @@ public class Employee {
 			getSession().beginTransaction();
 			session.save(this);
 			session.getTransaction().commit();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		} 
+		finally {
 			session.close();
 			factory.close();
 		}
@@ -72,65 +82,80 @@ public class Employee {
 	// read
 	public static Employee retrieveEmployee(int id) {
 		Employee 
-			result = null;
-
+			result;
 		try {
-
 			getSession().beginTransaction();
 			result = session.get(Employee.class, id);
 			session.getTransaction().commit();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+			 result = new Employee();
+		} 
+		finally {
 			session.close();
 			factory.close();
 		}
 		return result;
 	}
 
-//	@formatter:on
-
 	// update
 
 	public static void updateEmployee(int id, String firstName, String lastName, String company) {
-		Employee result;
+		Employee 
+			result;
+		boolean 
+			firstNameNotNull = firstName != null, 
+			lastNameNotNull = lastName != null,
+			companyNotNull = company != null;
 
-		try {
-			getSession().beginTransaction();
-			result = session.get(Employee.class, id);
+		if (firstNameNotNull && lastNameNotNull && companyNotNull && id > 0) {
+			try {
+				getSession().beginTransaction();
+				result = session.get(Employee.class, id);
 
-			if (firstName != null) {
-				result.setFirstName(firstName);
-			}
-			if (lastName != null) {
-				result.setLastName(lastName);
-			}
-			if (company != null) {
-				result.setCompany(company);
-			}
-			session.getTransaction().commit();
+				if (firstNameNotNull) {
+					result.setFirstName(firstName);
+				}
+				if (lastNameNotNull) {
+					result.setLastName(lastName);
+				}
+				if (companyNotNull) {
+					result.setCompany(company);
+				}
+				session.getTransaction().commit();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-			factory.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+				factory.close();
+			}
 		}
 	}
-
+	
 	// delete
-	public void deleteEntity() {
+	public static void deleteEntity(int id) {
+		Employee
+			temporal;
+		
 		try {
 			getSession().beginTransaction();
-
-		} catch (Exception e) {
+			temporal = session.get(Employee.class, id);
+			
+			session.delete(temporal);
+			
+			session.getTransaction().commit();
+		}
+		catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			session.close();
 			factory.close();
 		}
 	}
-
+		
 //	getters & setters
 
 	private static void setFactory() {
@@ -140,13 +165,13 @@ public class Employee {
 	private static SessionFactory getFactory() {
 		if (factory == null)
 			setFactory();
-		System.out.println("...factory class : "+factory.getClass());
+		System.out.println("...factory class : " + factory.getClass());
 		return factory;
 	}
 
 	private static void setSession() {
 		session = getFactory().getCurrentSession();
-		System.out.println("...session class : "+session.getClass());
+		System.out.println("...session class : " + session.getClass());
 	}
 
 	private static Session getSession() {
@@ -191,3 +216,5 @@ public class Employee {
 				+ "]";
 	}
 }
+
+//	@formatter:on

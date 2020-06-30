@@ -18,22 +18,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Employee
-			temp = Employee.retrieveEmployee(1);
-		int
-			index = temp.getId();
+//		Employee.deleteEntity(6);
 		
-//		System.out.println(index);
-		
-//		Employee.updateEmployee(1, null, null, "");
-		
-//		addEmployee();
-				
-//		System.out.println(Employee.retrieveEmployee(1));
-		
-
-		
-		
-	
 	}
 }
