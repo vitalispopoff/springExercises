@@ -27,18 +27,29 @@ public class CreateDemo {
 			//	create objects
 			
 			Instructor
-				tempInstructor = new Instructor("Chad", "Darby", "darby@luv2code.com");
+//				tempInstructor = new Instructor("Chad", "Darby", "darby@luv2code.com"),
+				tempInstructor = new Instructor("Madhu", "Patel", "madhu@luv2code.com");
 			
 			InstructorDetail
-				tempDetail = new InstructorDetail("http://www.luv2code.com/youtube", "coding");
+//				tempDetail = new InstructorDetail("http://www.luv2code.com/youtube", "coding"),
+				tempDetail = new InstructorDetail("http://www.youtube.com/user/madhupatel", "playing the guitar");
 			
 			//	associate the objects
 			
+			tempInstructor.setInstructorDetail(tempDetail);
 			
-
+			
+			//	session			
+			
 			session.beginTransaction();
 
+			System.out.println("...saving to DB : "+tempInstructor);
+			
+			session.save(tempInstructor);
+
 			session.getTransaction().commit();
+			
+			System.out.println("...saved : "+tempInstructor);
 
 		} catch (Exception e) {
 			e.printStackTrace();
