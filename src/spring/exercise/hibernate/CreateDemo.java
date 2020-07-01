@@ -2,12 +2,34 @@
 
 package spring.exercise.hibernate;
 
-import org.hibernate.*;
+import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import hibernate.exercise.demo.entity.*;
+import hibernate.exercise.demo.entity.Instructor;
+import hibernate.exercise.demo.entity.InstructorDetail;
 
 public class CreateDemo {
+	
+	static ArrayList<Instructor> 
+		instructors = new ArrayList<>();
+	static ArrayList<InstructorDetail> 
+		instructorDetails = new ArrayList<>();
+	
+	static {
+		//	create main table entities		
+		instructors.add(new Instructor("Chad", "Darby", "darby@luv2code.com"));
+		instructors.add(new Instructor("Madhu", "Patel", "madhu@luv2code.com"));
+		//	create join table entities		
+		instructorDetails.add(new InstructorDetail("http://www.luv2code.com/youtube", "coding"));
+		instructorDetails.add(new InstructorDetail("http://www.youtube.com/user/madhupatel", "playing the guitar"));
+		//	associate entities		
+		for(int i = 0; i < instructors.size(); i++) {
+			instructors.get(i).setInstructorDetail(instructorDetails.get(i));
+		}
+	}
 
 	public static void main(String[] args) {
 		
@@ -23,33 +45,19 @@ public class CreateDemo {
 //	@formatter:on
 
 		try {
-			
-			//	create objects
-			
+
 			Instructor
-//				tempInstructor = new Instructor("Chad", "Darby", "darby@luv2code.com"),
-				tempInstructor = new Instructor("Madhu", "Patel", "madhu@luv2code.com");
-			
-			InstructorDetail
-//				tempDetail = new InstructorDetail("http://www.luv2code.com/youtube", "coding"),
-				tempDetail = new InstructorDetail("http://www.youtube.com/user/madhupatel", "playing the guitar");
-			
-			//	associate the objects
-			
-			tempInstructor.setInstructorDetail(tempDetail);
-			
-			
-			//	session			
+				tempInstructor;
 			
 			session.beginTransaction();
-
-			System.out.println("...saving to DB : "+tempInstructor);
 			
-			session.save(tempInstructor);
+			session.delete(tempInstructor = session.get(Instructor.class, 1));
+			
+			
+
+//			for(Instructor instructor : instructors) session.save(instructor);
 
 			session.getTransaction().commit();
-			
-			System.out.println("...saved : "+tempInstructor);
 
 		} catch (Exception e) {
 			e.printStackTrace();
