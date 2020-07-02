@@ -58,8 +58,7 @@ public class InstructorDetail {
 				+ youtubeChannel 
 				+ ", hobby=" 
 				+ hobby 
-				+ ", instructor="
-				+ instructor
+//				+ ", instructor=" + instructor // these ain't to be listed in the bidirectional connection - feedback loop
 				+ "]";
 	}	
 }
