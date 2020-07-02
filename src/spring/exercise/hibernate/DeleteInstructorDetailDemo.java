@@ -11,29 +11,28 @@ public class DeleteInstructorDetailDemo extends Demo {
 
 			//	get the instructor detail object
 			int 
-				index = 2;
+				index = 1;
 			InstructorDetail
-				temp = session.get(InstructorDetail.class, index);
-					
-			// print the instructor detail object
+				temp = session.get(InstructorDetail.class, index);								
 			
-			System.out.println("... instructorDetail : " + temp);				
+			//	break the association InstructorDetail > Instructor		
 			
-			// print the associated instructor			
+			temp.getInstructor().setInstructorDetail(null);			
 			
-			System.out.println("... associated instructor  : " + temp.getInstructor());
+			System.out.println("... temp : "+temp);
 			
-			//	delete the instructor detail 
-			
+			//	delete the instructor detail		
+									
 			session.delete(temp);
-			System.out.println("... instructor detail "+index+" deleted");
-
+			
 			finalizing();
+			
+			System.out.println("... instructor detail "+index+" deleted");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			terminating();	// no leak presented in the lesson because the method contains "session.close();" already
+			terminating();
 		}
 
 	}

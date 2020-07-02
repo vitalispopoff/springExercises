@@ -30,7 +30,7 @@ public class Instructor {
 		email;
 
 		@OneToOne(cascade=CascadeType.ALL)
-		@JoinColumn(name="instructor_detail_id")
+		@JoinColumn(name="instructor_detail_id")		
 	private InstructorDetail
 		instructorDetail;
 
@@ -71,7 +71,7 @@ public class Instructor {
 				+ ", email=" 
 				+ email
 				+ ", instructorDetail=" 
-				+ instructorDetail 
+				+ (instructorDetail == null ? "null" : instructorDetail.getId())	// null causes NullPointerException - who would have thought?
 				+ "]";
 		}
 }

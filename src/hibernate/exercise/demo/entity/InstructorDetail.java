@@ -22,7 +22,13 @@ public class InstructorDetail {
 	private String 
 		hobby;
 
-		@OneToOne(cascade = CascadeType.ALL, mappedBy="instructorDetail")	// mappedBy refers to the object class (InstructorDetail this) as a property in the field class ((Instructor instructor.instructorDetail)
+		@OneToOne(mappedBy="instructorDetail", 
+					cascade = {
+								CascadeType.DETACH,
+								CascadeType.MERGE,
+								CascadeType.PERSIST,
+								CascadeType.REFRESH
+							})	// no problem in adding more options, problem in reading them later
 	private Instructor 
 		instructor;
 
@@ -58,7 +64,7 @@ public class InstructorDetail {
 				+ youtubeChannel 
 				+ ", hobby=" 
 				+ hobby 
-//				+ ", instructor=" + instructor // these ain't to be listed in the bidirectional connection - feedback loop
+				+ ", instructor=" + instructor // these ain't to be listed in the bidirectional connection - feedback loop
 				+ "]";
 	}	
 }
