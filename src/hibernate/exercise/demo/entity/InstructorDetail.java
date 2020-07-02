@@ -22,8 +22,8 @@ public class InstructorDetail {
 	private String 
 		hobby;
 
-		@OneToOne(cascade = CascadeType.ALL, mappedBy="instructorDetail")	// refers to the object class as a property in the field class
-	private Instructor
+		@OneToOne(cascade = CascadeType.ALL, mappedBy="instructorDetail")	// mappedBy refers to the object class (InstructorDetail this) as a property in the field class ((Instructor instructor.instructorDetail)
+	private Instructor 
 		instructor;
 
 //	constructors
