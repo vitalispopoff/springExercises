@@ -11,17 +11,17 @@ public class GetInstructorDetailDemo extends Demo {
 
 			//	get the instructor detail object
 			int 
-				index = 2;
+				index = 23;
 			InstructorDetail
 				temp = session.get(InstructorDetail.class, index);
 					
 			// print the instructor detail object
 			
-//			System.out.println("... instructorDetail : " + temp);				
+			System.out.println("... instructorDetail : " + temp);				
 			
 			// print the associated instructor			
 			
-//			System.out.println("... associated instructor  : " + temp.getInstructor());
+			System.out.println("... associated instructor  : " + temp.getInstructor());
 			
 
 			finalizing();
