@@ -2,9 +2,9 @@
 
 package hibernate.exercise.demo.entity;
 
-import javax.persistence.*;
+import java.util.*;
 
-//	fields
+import javax.persistence.*;
 
 	@Entity
 	@Table(name="instructor")
@@ -33,6 +33,11 @@ public class Instructor {
 		@JoinColumn(name="instructor_detail_id")		
 	private InstructorDetail
 		instructorDetail;
+		
+		@OneToMany(mappedBy="instructor", 
+					cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})			// we don't want to cascade delete
+	private List<Course> 
+		courses;
 
 //	constructors		
 
@@ -47,16 +52,43 @@ public class Instructor {
 //	getters & setters		
 
 	public void setId(int id) {this.id = id;}
-	public void setFirstName(String firstName) {this.firstName = firstName;}
-	public void setLastName(String lastName) {this.lastName = lastName;}
-	public void setEmail(String email) {this.email = email;}
-	public void setInstructorDetail(InstructorDetail instructorDetail) {this.instructorDetail = instructorDetail;}
-
 	public int getId() {return id;}
-	public String getFirstName() {return firstName;}		
+	
+	public void setFirstName(String firstName) {this.firstName = firstName;}
+	public String getFirstName() {return firstName;}
+	
+	public void setLastName(String lastName) {this.lastName = lastName;}
 	public String getLastName() {return lastName;}
+	
+	public void setEmail(String email) {this.email = email;}
 	public String getEmail() {return email;}
+	
+	public void setInstructorDetail(InstructorDetail instructorDetail) {this.instructorDetail = instructorDetail;}
 	public InstructorDetail getInstructorDetail() {return instructorDetail;}
+	
+	public void setCourses(List<Course> courses) {this.courses= courses;}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<Course> getCourses() {return courses;}
+	
+
+																	//	convenience methods for bidirectional relationship
+	public void add(Course tempCourse) {
+		if (courses == null) courses = new ArrayList<>();
+		
+		courses.add(tempCourse);									// 	adding a course to the instructor's course list
+		tempCourse.setInstructor(this);								//	adding an instructor to the listed course
+	}																
+	
 
 //	overrides		
 
