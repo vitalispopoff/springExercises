@@ -3,6 +3,7 @@ package spring.exercise.hibernate;
 import static spring.exercise.connecting.ConnectionProcedure.*;
 
 import hibernate.exercise.demo.entity.*;
+import java.util.*;
 
 public class EagerLazyDemo {
 			
@@ -15,34 +16,36 @@ public class EagerLazyDemo {
 	static InstructorDetail
 		tempInstructorDetail;
 	
-	static Course
-		tempCourse1,
-		tempCourse2;
+	static List<Course>
+	tempCourses/* = new LinkedList<>() */;
 	
 	public static void main(String[] args) {
 		
 		try {
 			initializing();
 			
-			//	retrieve the instructor 
 			tempInstructor = session.get(Instructor.class, tempInstructorId);	
 			
-			System.out.println("... Instructor : "+tempInstructor);
+			tempCourses = tempInstructor.getCourses();					// this on itself doesn't seem to guarantee a proper loading. why?
+			System.out.println(tempCourses.size());
+//			for(Course course : tempInstructor.getCourses());
 			
-			// closing early to force the exception
-			
-//			finalizing();		//contrary to predictions this one doesn't change the behaviour of session.close in terms of "HHH10001008" 
+//			String temporal = tempInstructor.getCourses().toString();	// anything that connects the course tuples to the context should be enough to keep them in the memory
+//			System.out.println(tempInstructor.getCourses());			// ... 
 
-//			session.close();	// doesn't work exactly as in the course vid : no "INFO: HHH10001008"
-			terminating();		// terminating both session and factory reproduces "lazyInitlalization Exception" after the "HHH10001008"
-
-			// moving it to after the session.close is supposed to throw some nasty exception
-			System.out.println("... Courses: "+ tempInstructor.getCourses());
+			finalizing();
 			
 			System.out.println("... done.");
-			
+						
 		}
 		catch (Exception e) {e.printStackTrace();}
+		finally {terminating();}
+		
+//		System.out.println("... Courses: "+ tempInstructor.getCourses());
+//		tempCourses = tempInstructor.getCourses();
+//		for(Course course : tempCourses)System.out.println(course);
+		System.out.println(tempCourses.size());
+//		System.out.println(tempCourses.toString());
 	}
-
+	
 }

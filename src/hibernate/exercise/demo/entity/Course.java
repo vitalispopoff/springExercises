@@ -63,7 +63,7 @@ public class Course {
 					.toString();
 				
 //		return "Course [id=" + id + ", title=" + title + ", instructor=" + instructor.getId() + "]";
-	}	 	
+	}
 }
 	
 //	@formatter:on
