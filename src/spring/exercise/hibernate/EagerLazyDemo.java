@@ -24,10 +24,12 @@ public class EagerLazyDemo {
 		try {
 			initializing();
 			
-			//	retrieve the instructor - because of the FetchType.EAGER at Instructor.courses, the statement includes loading the course tuples from DB
+			//	retrieve the instructor 
 			tempInstructor = session.get(Instructor.class, tempInstructorId);	
 			
 			System.out.println("... Instructor : "+tempInstructor);
+			
+			//	due to the the Instructor.courses fetch=FetchType.Lazy annotation, the courses are loaded upon request only.
 			System.out.println("... Courses: "+ tempInstructor.getCourses());
 						
 			finalizing();
