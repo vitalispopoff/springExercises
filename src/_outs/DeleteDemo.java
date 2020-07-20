@@ -1,12 +1,13 @@
 //	@formatter:off
 
-package spring.exercise.hibernate;
+package _outs;
 
 import org.hibernate.*;
 
 import hibernate.exercise.demo.entity.*;
+import spring.exercise.connecting.ConnectionProcedure;
 
-public class DeleteDemo extends Demo {
+public class DeleteDemo extends ConnectionProcedure {
 	
 	public static void main(String[] args) {
 		

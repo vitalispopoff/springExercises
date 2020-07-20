@@ -66,21 +66,8 @@ public class Instructor {
 	public void setInstructorDetail(InstructorDetail instructorDetail) {this.instructorDetail = instructorDetail;}
 	public InstructorDetail getInstructorDetail() {return instructorDetail;}
 	
-	public void setCourses(List<Course> courses) {this.courses= courses;}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void setCourses(List<Course> courses) {this.courses= courses;}	
 	public List<Course> getCourses() {return courses;}
-	
-
 																	//	convenience methods for bidirectional relationship
 	public void add(Course tempCourse) {
 		if (courses == null) courses = new ArrayList<>();
@@ -89,7 +76,6 @@ public class Instructor {
 		tempCourse.setInstructor(this);								//	adding an instructor to the listed course
 	}																
 	
-
 //	overrides		
 
 		@Override

@@ -1,8 +1,9 @@
-package spring.exercise.hibernate;
+package _outs;
 
 import hibernate.exercise.demo.entity.*;
+import spring.exercise.connecting.ConnectionProcedure;
 
-public class GetInstructorDetailDemo extends Demo {
+public class GetInstructorDetailDemo extends ConnectionProcedure {
 
 	public static void main(String[] args) {
 

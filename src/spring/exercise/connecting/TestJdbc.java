@@ -1,4 +1,4 @@
-package spring.exercise.jdbc;
+package spring.exercise.connecting;
 
 import java.sql.*;
 

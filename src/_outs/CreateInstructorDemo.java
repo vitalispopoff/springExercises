@@ -1,6 +1,6 @@
 //	@formatter:off
 
-package spring.exercise.hibernate;
+package _outs;
 
 import java.util.ArrayList;
 
@@ -10,8 +10,9 @@ import java.util.ArrayList;
 
 import hibernate.exercise.demo.entity.Instructor;
 import hibernate.exercise.demo.entity.InstructorDetail;
+import spring.exercise.connecting.ConnectionProcedure;
 
-public class CreateDemo extends Demo{
+public class CreateInstructorDemo extends ConnectionProcedure{
 	
 	static ArrayList<Instructor> 
 		instructors = new ArrayList<>();
@@ -44,7 +45,7 @@ public class CreateDemo extends Demo{
 			initializing();
 //			session.beginTransaction();						
 
-//			for(Instructor instructor : instructors) session.save(instructor);
+			for(Instructor instructor : instructors) session.save(instructor);
 
 			finalizing();
 //			session.getTransaction().commit();

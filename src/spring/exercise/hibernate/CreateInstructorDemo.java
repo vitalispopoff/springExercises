@@ -1,63 +1,34 @@
-//	@formatter:off
-
 package spring.exercise.hibernate;
 
-import java.util.ArrayList;
+import static spring.exercise.connecting.ConnectionProcedure.*;
 
-//import org.hibernate.Session;
-//import org.hibernate.SessionFactory;
-//import org.hibernate.cfg.Configuration;
+import hibernate.exercise.demo.entity.*;
+//import hibernate.exercise.demo.entity.Instructor;
+//import hibernate.exercise.demo.entity.InstructorDetail;
 
-import hibernate.exercise.demo.entity.Instructor;
-import hibernate.exercise.demo.entity.InstructorDetail;
-
-public class CreateInstructorDemo extends Demo{
+public class CreateInstructorDemo {
 	
-	static ArrayList<Instructor> 
-		instructors = new ArrayList<>();
-	static ArrayList<InstructorDetail> 
-		instructorDetails = new ArrayList<>();
 	
-	static {
-		//	create main table entities		
-		instructors.add(new Instructor("Chad", "Darby", "darby@luv2code.com"));
-		instructors.add(new Instructor("Madhu", "Patel", "madhu@luv2code.com"));
-		
-		//	create join table entities		
-		instructorDetails.add(new InstructorDetail("http://www.luv2code.com/youtube", "coding"));
-		instructorDetails.add(new InstructorDetail("http://www.youtube.com/user/madhupatel", "playing the guitar"));
-		
-		//	associate entities		
-		for(int i = 0; i < instructors.size(); i++) {
-			instructors.get(i).setInstructorDetail(instructorDetails.get(i));
-		}
-	}
+		//	make an instructor object		
+	static Instructor
+		tempInstructor = new Instructor("Susan", "Public", "public@luv2code.com");
 
-	
+		//	make an instructorDetail object
+	static InstructorDetail
+		tempInstructorDetail = new InstructorDetail("https://youtube.com/user/thepublic","gaming");
+
+		//	associate instructor with instructorDetail
+	static {tempInstructor.setInstructorDetail(tempInstructorDetail);}
 	
 	public static void main(String[] args) {
 		
-//		Demo demo = new CreateDemo();
-		
 		try {
-			
 			initializing();
-//			session.beginTransaction();						
-
-			for(Instructor instructor : instructors) session.save(instructor);
-
-			finalizing();
-//			session.getTransaction().commit();
-
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		} finally {
-			terminating();
-//			session.close();
-//			factory.close();
+			
+			session.save(tempInstructor);			
 		}
-
+		catch (Exception e) {e.printStackTrace();}
+		finally {terminating();}
 	}
-}
 
-//@formatter:on
+}
