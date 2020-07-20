@@ -4,8 +4,7 @@ import static spring.exercise.connecting.ConnectionProcedure.*;
 
 import hibernate.exercise.demo.entity.*;
 
-
-public class GetInstructorCoursesDemo {
+public class EagerLazyDemo {
 			
 	static int 
 		tempInstructorId = 1;
@@ -25,13 +24,14 @@ public class GetInstructorCoursesDemo {
 		try {
 			initializing();
 			
-			//	retrieve the instructor			
-			tempInstructor = session.get(Instructor.class, tempInstructorId);
+			//	retrieve the instructor - because of the FetchType.EAGER at Instructor.courses, the statement includes loading the course tuples from DB
+			tempInstructor = session.get(Instructor.class, tempInstructorId);	
 			
-			System.out.println("Instructor : "+tempInstructor);
-			System.out.println("Courses: "+ tempInstructor.getCourses());
+			System.out.println("... Instructor : "+tempInstructor);
+			System.out.println("... Courses: "+ tempInstructor.getCourses());
 						
 			finalizing();
+			System.out.println("... done.");
 		}
 		catch (Exception e) {e.printStackTrace();}
 		finally {terminating();}
