@@ -29,14 +29,20 @@ public class EagerLazyDemo {
 			
 			System.out.println("... Instructor : "+tempInstructor);
 			
-			//	due to the the Instructor.courses fetch=FetchType.Lazy annotation, the courses are loaded upon request only.
+			// closing early to force the exception
+			
+//			finalizing();		//contrary to predictions this one doesn't change the behaviour of session.close in terms of "HHH10001008" 
+
+//			session.close();	// doesn't work exactly as in the course vid : no "INFO: HHH10001008"
+			terminating();		// terminating both session and factory reproduces "lazyInitlalization Exception" after the "HHH10001008"
+
+			// moving it to after the session.close is supposed to throw some nasty exception
 			System.out.println("... Courses: "+ tempInstructor.getCourses());
-						
-			finalizing();
+			
 			System.out.println("... done.");
+			
 		}
 		catch (Exception e) {e.printStackTrace();}
-		finally {terminating();}
 	}
 
 }
