@@ -66,7 +66,10 @@ public class Course {
 //	overrides
 
 	@Override
-	public String toString() {		
+	public String toString() {
+		
+		String instructorInfo = instructor == null ? "none" : Integer.toString(instructor.getId()); 
+			
 		return new StringBuilder()
 					.append("Course={")
 					.append("id=")
@@ -75,7 +78,7 @@ public class Course {
 					.append(title)
 					.append("'")
 					.append(", instructor=")
-					.append(instructor.getId())
+					.append(instructorInfo)
 					.append("}")
 					.toString();
 				
