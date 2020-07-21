@@ -1,16 +1,17 @@
 //	@formatter:off
 
-package spring.exercise.hibernate;
+package _outs;
 
 import static spring.exercise.connecting.ConnectionProcedure.*;
 
 import hibernate.exercise.demo.entity.*;
 
-public class DeleteCoursesAndReviewsDemo {
+public class GetCoursesAndReviewsDemo {
 		
 	/**
 	 * 1. get a course
-	 * 2. delete course
+	 * 2. print the course
+	 * 3. print the course reviews
 	 */
 			
 	static int 
@@ -33,12 +34,15 @@ public class DeleteCoursesAndReviewsDemo {
 		
 			tempCourse = session.get(Course.class, tempCourseId); 
 			
-			session.delete(tempCourse);
+			for(Review review : tempCourse.getReviews());	// need this to force the review loading
 									
 			finalizing();
 		}
 		catch (Exception e) {e.printStackTrace();}
 		finally {terminating();}
+		
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
 	}
 }
 

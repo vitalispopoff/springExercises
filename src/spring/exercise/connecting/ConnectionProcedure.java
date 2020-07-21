@@ -20,6 +20,7 @@ public abstract class ConnectionProcedure {
 					.addAnnotatedClass(InstructorDetail.class)
 					.addAnnotatedClass(Course.class)
 					.addAnnotatedClass(Review.class)
+					.addAnnotatedClass(Student.class)
 					.buildSessionFactory();
 	public static Session 
 		session = factory.getCurrentSession();
@@ -36,7 +37,7 @@ public abstract class ConnectionProcedure {
 	
 	public static void terminating() {
 		session.close();
-//		factory.close();		
+		factory.close();		
 	}
 	
 	public static Session getSession() {return session;}
