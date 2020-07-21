@@ -16,8 +16,8 @@ public class Review {
 	private String
 		comment;
 		
-	private Course
-		course;
+		
+//	private Course		course;		// this one completely useless here
 
 //	
 	

@@ -13,7 +13,7 @@ public abstract class ConnectionProcedure {
 		configFile = "hibernate.cfg.xml";
 	private static Configuration 
 		config = new Configuration();
-	private static SessionFactory 
+	public static SessionFactory 
 		factory = config
 					.configure(configFile)
 					.addAnnotatedClass(Instructor.class)
@@ -24,7 +24,7 @@ public abstract class ConnectionProcedure {
 	public static Session 
 		session = factory.getCurrentSession();
 	
-	
+//	
 	
 	public static void initializing() {
 		session.beginTransaction();
@@ -36,10 +36,11 @@ public abstract class ConnectionProcedure {
 	
 	public static void terminating() {
 		session.close();
-		factory.close();		
+//		factory.close();		
 	}
 	
 	public static Session getSession() {return session;}
+	public static SessionFactory getFactory() {return factory;}
 	
 }
 
