@@ -34,7 +34,8 @@ public class Instructor {
 	private InstructorDetail
 		instructorDetail;
 		
-		@OneToMany(mappedBy="instructor", 
+		@OneToMany(fetch=FetchType.LAZY,
+					mappedBy="instructor", 
 					cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})			// we don't want to cascade delete
 	private List<Course> 
 		courses;
