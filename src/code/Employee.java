@@ -2,43 +2,32 @@
 
 package code;
 
-import java.util.ArrayList;
-import java.util.List;
+import static code.ConnectionProcedure.*;
+
+import java.util.*;
 
 import javax.persistence.*;
-import org.hibernate.*;
-import org.hibernate.cfg.Configuration;
+
+
 
 	@Entity
 	@Table(name = "employee")
 public class Employee {
-
-	private static String 
-		configFile = "hibernate.cfg.xml"
-	;
-	private static SessionFactory 
-		factory
-	;
-	private static Session 
-		session
-	;
-	private static Configuration 
-		config = new Configuration().configure(configFile)
-	;
+	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "id")
 	private int 
-		id
-	;
+		id;
+		
 		@Column(name = "first_name")
 	private String 
-		firstName
-	;
+		firstName;
+		
 		@Column(name = "last_name")
 	private String 
-		lastName
-	;
+		lastName;
+		
 		@Column(name = "company")
 	private String 
 		company;
@@ -56,53 +45,44 @@ public class Employee {
 	}
 	
 //	methods
-	
-	public static void resetConnection() {
-		factory = null;
-		session = null;
-		config = null;
-		config = new Configuration().configure(configFile);
-	}
 
 //	CRUD
 
 	// create
 	public void saveEmployee() {
 		try {
-			getSession().beginTransaction();
+			initializing();
+			
 			session.save(this);
-			session.getTransaction().commit();
+
+			finalizing();
 		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		} 
-		finally {
-			session.close();
-			factory.close();
-		}
+		catch (Exception e) {e.printStackTrace();} 
+		finally {terminating();}
 	}
 
 	// read
 	public static Employee retrieveEmployee(int id) {
 		Employee 
 			result;
+		
 		try {
-			getSession().beginTransaction();
+			initializing();
+
 			result = session.get(Employee.class, id);
-			session.getTransaction().commit();
+
+			finalizing();
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			 result = new Employee();
+			 result = null;
 		} 
-		finally {
-			session.close();
-			factory.close();
-		}
+		finally {terminating();}
 		return result;
 	}
 	
 	//	find
+	
 	public static List<Employee> findEmployee(String company) {
 		List<Employee>
 			result;
@@ -110,17 +90,17 @@ public class Employee {
 			query = "from Employee s where company='".concat(company).concat("'");
 		
 		try {
-			getSession().beginTransaction();
-			result = session.createQuery(query).getResultList();			
+			initializing();
+			
+			result = session.createQuery(query).getResultList();
+			
+			finalizing();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			result = new ArrayList<Employee>();
-			}
-		finally {
-			session.close();
-			factory.close();
+			result = null;
 		}
+		finally {terminating();}
 		return result;
 	}
 
@@ -136,7 +116,8 @@ public class Employee {
 
 		if (firstNameNotNull && lastNameNotNull && companyNotNull && id > 0) {
 			try {
-				getSession().beginTransaction();
+				initializing();
+
 				result = session.get(Employee.class, id);
 
 				if (firstNameNotNull) {
@@ -148,90 +129,48 @@ public class Employee {
 				if (companyNotNull) {
 					result.setCompany(company);
 				}
-				session.getTransaction().commit();
+					
+				finalizing();
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				session.close();
-				factory.close();
-			}
+			} catch (Exception e) {	e.printStackTrace(); }
+			finally {terminating();}
 		}
 	}
 	
 	// delete
+	
 	public static void deleteEntity(int id) {
 		Employee
 			temporal;
 		
 		try {
-			getSession().beginTransaction();
+			initializing();
+			
 			temporal = session.get(Employee.class, id);
 			
 			session.delete(temporal);
 			
-			session.getTransaction().commit();
+			finalizing();
 		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		finally {
-			session.close();
-			factory.close();
-		}
+		catch (Exception e) {e.printStackTrace();}
+		finally {terminating();}
 	}
 		
 //	getters & setters
 
-	private static void setFactory() {
-		factory = config.addAnnotatedClass(Employee.class).buildSessionFactory();
-	}
+	public int getId() {return id;}
+	
+	
+	public String getFirstName() {return firstName;}
+	public void setFirstName(String firstName) {this.firstName = firstName;}
 
-	private static SessionFactory getFactory() {
-		if (factory == null)
-			setFactory();
-		System.out.println("...factory class : " + factory.getClass());
-		return factory;
-	}
+	
+	public String getLastName() {return lastName;}
+	public void setLastName(String lastName) {this.lastName = lastName;}
 
-	private static void setSession() {
-		session = getFactory().getCurrentSession();
-		System.out.println("...session class : " + session.getClass());
-	}
-
-	private static Session getSession() {
-		if (session == null)
-			setSession();
-		return session;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
+	
+	public String getCompany() {return company;}
+	public void setCompany(String company) {this.company = company;}
 
 //	@overrides	
 
@@ -242,4 +181,4 @@ public class Employee {
 	}
 }
 
-//	@formatter:on
+//	@formatter:on	
