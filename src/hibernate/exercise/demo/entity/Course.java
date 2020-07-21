@@ -32,6 +32,10 @@ public class Course {
 		@JoinColumn(name="course_id")
 	private List<Review>
 		reviews;
+		
+		
+	private List<Student>
+		students;
 	
 //	constructors
 	
@@ -62,6 +66,16 @@ public class Course {
 		if(reviews == null) reviews = new ArrayList<>();
 		reviews.add(review);
 	}
+	
+
+	public List<Student> getStudents() {return students;}
+	public void setStudents(List<Student> students) {this.students = students;}
+	
+	public void addStudent(Student student) {
+		if(students == null) students = new ArrayList<>();
+		students.add(student);
+	}	
+	
 	
 //	overrides
 
