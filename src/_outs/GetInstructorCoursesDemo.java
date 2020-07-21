@@ -1,15 +1,14 @@
-package spring.exercise.hibernate;
+package _outs;
 
 import static spring.exercise.connecting.ConnectionProcedure.*;
 
 import hibernate.exercise.demo.entity.*;
 
 
-public class DeleteCourseDemo {
+public class GetInstructorCoursesDemo {
 			
 	static int 
-		tempInstructorId = 1,
-		tempCourseId = 1;
+		tempInstructorId = 1;
 	
 	static Instructor
 		tempInstructor;
@@ -26,18 +25,12 @@ public class DeleteCourseDemo {
 		try {
 			initializing();
 			
-			//	get a course
+			//	retrieve the instructor			
+			tempInstructor = session.get(Instructor.class, tempInstructorId);
 			
-			tempCourse1 = session.get(Course.class, tempCourseId);
-			
-			System.out.println("deleting the course: "+tempCourse1);
-			
-			// delete the course
-			session.delete(tempCourse1);
-			
-			
-			
-			// commit			
+			System.out.println("Instructor : "+tempInstructor);
+			System.out.println("Courses: "+ tempInstructor.getCourses());
+						
 			finalizing();
 		}
 		catch (Exception e) {e.printStackTrace();}

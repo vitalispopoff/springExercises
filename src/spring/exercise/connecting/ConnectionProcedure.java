@@ -19,6 +19,7 @@ public abstract class ConnectionProcedure {
 					.addAnnotatedClass(Instructor.class)
 					.addAnnotatedClass(InstructorDetail.class)
 					.addAnnotatedClass(Course.class)
+					.addAnnotatedClass(Review.class)
 					.buildSessionFactory();
 	public static Session 
 		session = factory.getCurrentSession();

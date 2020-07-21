@@ -1,4 +1,4 @@
-package spring.exercise.hibernate;
+package _outs;
 
 import static spring.exercise.connecting.ConnectionProcedure.*;
 
