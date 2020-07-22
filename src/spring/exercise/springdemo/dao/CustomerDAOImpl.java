@@ -2,8 +2,7 @@ package spring.exercise.springdemo.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +12,8 @@ import spring.exercise.springdemo.entity.Customer;
 	
 	@Repository
 public class CustomerDAOImpl implements CustomerDAO {
-
-	/**
-	 *  1. inject the session factory
-	 */
 	
-		@Autowired
+		@Autowired			//	inject the session factory
 	private SessionFactory
 		sessionFactory;
 	
@@ -26,20 +21,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 		@Transactional
 	public List<Customer> getCustomers() {
 			
-		/**
-		 * 1. get the current hibernate session
-		 * 2. create a query
-		 * 3. execute the query
-		 * 4. return result list from the query 
-		 */
-
-		Session 
+		Session				//	get the current hibernate session 
 			currentSession = sessionFactory.getCurrentSession();
-		Query<Customer> 
+		
+		Query<Customer> 	// 	create a query
 			query = currentSession.createQuery("from Customer", Customer.class);
-		List<Customer> 
+		
+		List<Customer>		//	execute the query 
 			customers = query.getResultList();
 		
-		return customers;
+		return customers;	//	return result list from the query 
 	}
 }
