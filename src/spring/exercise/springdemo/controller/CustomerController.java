@@ -5,26 +5,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import spring.exercise.springdemo.dao.CustomerDAO;
 import spring.exercise.springdemo.entity.Customer;
+import spring.exercise.springdemo.service.CustomerService;
 
 	@Controller
 	@RequestMapping("/customer")
 public class CustomerController {		
 		
-		@Autowired				//	injecting the customer dao
-	private CustomerDAO 
-		customerDAO;
+		@Autowired				//	injecting the customerService instead of the customerDAO, as the transaction layer has been moved to the Service package
+	private CustomerService 
+		customerService;
 	
-		@RequestMapping("/list")
+		@GetMapping("/list")
 	public String listCustomers (Model model) {
 			
 		
-		//	get customers from the dao
+		//	get customers from the dao through the service layer
 		List<Customer>		 
-			customers = customerDAO.getCustomers();
+			customers = customerService.getCustomers();
 			
 		//	add the customers to the model
 		model.addAttribute("customers", customers);
