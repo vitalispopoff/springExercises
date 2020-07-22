@@ -27,9 +27,10 @@ public class Student {
 	private String
 		email;
 	
-		@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+		@ManyToMany(fetch=FetchType.LAZY,
+					cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 		@JoinTable(name="course_student",
-					joinColumns=@JoinColumn(name="studnet_id"),
+					joinColumns=@JoinColumn(name="student_id"),
 					inverseJoinColumns=@JoinColumn(name="course_id"))
 	private List<Course>
 		courses;
@@ -70,6 +71,8 @@ public class Student {
 		courses.add(course);
 	}
 
+//	
+	
 	@Override
 	public String toString() {
 		return "Student [id=" 

@@ -4,7 +4,7 @@ import static spring.exercise.connecting.ConnectionProcedure.*;
 
 import hibernate.exercise.demo.entity.*;
 
-public class CreateCourseAndStudentsDemo {
+public class List_CourseAndStudentsDemo {
 		
 	/**
 	 * 1. get student Mary from DB
@@ -21,8 +21,6 @@ public class CreateCourseAndStudentsDemo {
 		tempStudent1;
 	
 	static Course
-		tempCourse1 = new Course("Rubik's Cube - How To Speed Cube"),
-		tempCourse2 = new Course("Atari 2600 - Game Development"),
 		tempCourse;
 	
 //	
@@ -34,18 +32,16 @@ public class CreateCourseAndStudentsDemo {
 			
 			tempStudent = session.get(Student.class, tempStudentId);
 						
-			
-			tempCourse1.addStudent(tempStudent);
-			tempCourse2.addStudent(tempStudent);
-			
-			session.save(tempCourse1);
-			session.save(tempCourse2);
-						
+			for(Course course : tempStudent.getCourses());	// forced loading (because fetch= FetchType.LAZY)
+									
 			finalizing();
 		}
 		catch (Exception e) {e.printStackTrace();}
 		finally {
 			terminating();			
 			}
+		
+		System.out.println("... tempStudent: "+tempStudent);
+		System.out.println("... tempStudent's courses"+tempStudent.getCourses());
 	}
 }
