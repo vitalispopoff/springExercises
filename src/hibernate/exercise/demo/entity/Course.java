@@ -22,18 +22,21 @@ public class Course {
 	private String
 		title;
 	
-		@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})		// we don't want to have REMOVE
+		@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})		// we don't want to have REMOVE
 		@JoinColumn(name="instructor_id")
 	private Instructor
 		instructor;
-		
 		
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 		@JoinColumn(name="course_id")
 	private List<Review>
 		reviews;
 		
-		
+		@ManyToMany(fetch=FetchType.LAZY, 
+					cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+		@JoinTable(name="course_student",
+					joinColumns=@JoinColumn(name="course_id"),
+					inverseJoinColumns=@JoinColumn(name="student_id"))
 	private List<Student>
 		students;
 	
