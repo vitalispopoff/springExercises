@@ -26,29 +26,37 @@
 			<div id="container">
 				<div id="content">
 				
-				<!-- add out html table here -->
+					<!-- "add a customer" button  -->				
+					<input 
+							type="button" 
+							value="Add Customer"
+							onclick="window.location.href='showFormForAdd'; return false;"
+							class="add-button"
+					/>
 				
-				<table>
-					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Email</th>
-					</tr>
-					
-					<!-- loop over and print the customers -->
-					<c:forEach var="tempCustomer" items="${customers}">
-					 
+					<!-- add out html table here -->				
+					<table>
 						<tr>
-							<td> ${tempCustomer.firstName}</td>
-							<td> ${tempCustomer.lastName}</td>
-							<td> ${tempCustomer.email}</td>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
 						</tr>
+					
+						<!-- loop over and print the customers -->
+						<c:forEach var="tempCustomer" items="${customers}">
+					 
+							<tr>
+								<td> ${tempCustomer.firstName}</td>
+								<td> ${tempCustomer.lastName}</td>
+								<td> ${tempCustomer.email}</td>
+							</tr>
 						
-					</c:forEach>
+						</c:forEach>
 								
-				</table>
+					</table>
 				
 				</div>
-			</div>					
+			</div>
+								
 		</body>
 	</html>
