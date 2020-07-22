@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.exercise.springdemo.entity.Customer;
@@ -44,6 +46,17 @@ public class CustomerController {
 			
 			
 			return "customer-form";
+		}
+		
+		@PostMapping("/saveCustomer")
+	public String saveCustomer(
+			@ModelAttribute("customer") 
+		Customer customer) {
+			
+			// the method delegates the work to the service layer : CustomerService interface
+			customerService.saveCustomer(customer);	
+			
+			return "redirect:/customer/list";
 		}
 		
 }

@@ -8,4 +8,7 @@ public interface CustomerService {
 	
 	List<Customer> getCustomers();
 
+	void saveCustomer(Customer customer);
+	
+
 }

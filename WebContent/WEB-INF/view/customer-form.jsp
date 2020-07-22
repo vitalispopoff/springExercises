@@ -36,6 +36,9 @@
 				Save Customer
 			</h3>
 			
+			<!-- the form calls the saveCustomer method with customer model attribute as Post mapping 
+					the save button calls the saveCustomer method at CustomerController -->
+			
 			<form:form action="saveCustomer" modelAttribute="customer" method="POST">
 				
 				<table>
@@ -57,7 +60,8 @@
 						
 						<tr>
 							<td></td>
-							<td><input type="submit" value="Save" class="save" /></td>
+							<td><input type="submit" value="Save" class="save" /></td> 
+							
 						</tr>						
 																		
 					</tbody>
@@ -69,7 +73,7 @@
 			<div style="clear; both;"></div>
 			
 			<p>
-				<a href="${pageContext.request.contextPath}/customer/list">Back to list</a>
+				<a href="${pageContext.request.contextPath}/customer/list">Back to list</a>	
 			</p>
 			
 		</div>

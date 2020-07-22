@@ -31,4 +31,18 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		return customers;	//	return result list from the query 
 	}
+
+		@Override
+	public void saveCustomer(Customer customer) {
+
+		// the saveCustomer method is actually processed here as the chain of responsibility ends in the DAOImpl class :
+					
+		//	get current hibernate session
+		Session
+			currentSession = sessionFactory.getCurrentSession();
+			
+		//	eventually save the customer to the db
+		currentSession.save(customer);
+									
+		}
 }
