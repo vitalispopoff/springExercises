@@ -1,0 +1,1 @@
+select min(`id`) from `hb-05-many-to-many`.course; 
