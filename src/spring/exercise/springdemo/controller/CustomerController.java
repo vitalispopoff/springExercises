@@ -31,7 +31,7 @@ public class CustomerController {
 		List<Customer>		 
 			customers = customerService.getCustomers();
 			
-		//	add the customers to the model
+		//	add the customers as an attribute to the model
 		model.addAttribute("customers", customers);
 
 		return "list-customers";
@@ -57,6 +57,7 @@ public class CustomerController {
 			// the method delegates the work to the service layer : CustomerService interface
 			customerService.saveCustomer(customer);	
 			
+			// redirects to the "/customer/list" address forcing the listCustomers method.
 			return "redirect:/customer/list";
 		}
 		

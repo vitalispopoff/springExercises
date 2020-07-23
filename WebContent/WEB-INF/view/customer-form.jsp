@@ -41,6 +41,9 @@
 			
 			<form:form action="saveCustomer" modelAttribute="customer" method="POST">
 				
+				<!-- needs an association with a customer id -->
+				<form:hidden path="id" />
+				
 				<table>
 					<tbody>
 						<tr>
