@@ -18,14 +18,14 @@ public class CustomerServiceImpl implements CustomerService {
 		
 //		
 			
-		@Override
-		@Transactional
+	@Override
+	@Transactional
 	public List<Customer> getCustomers() {
 		return customerDAO.getCustomers();
 	}
 
-		@Override
-		@Transactional
+	@Override
+	@Transactional
 	public void saveCustomer(Customer customer) {
 		
 		// even tho the customerServiceImpl takes care of the save method contracted by its interface, 
@@ -33,16 +33,26 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDAO.saveCustomer(customer);					
 	}
 
-		@Override
-		@Transactional
+	@Override
+	@Transactional
 	public Customer getCustomer(int id) {
 		return customerDAO.getCustomer(id);
 	}
 
-		@Override
-		@Transactional
+	@Override
+	@Transactional
 	public void deleteCustomer(int id) {
 		customerDAO.deleteCustomer(id);
 			
 	}
+
+	@Override
+	@Transactional
+	public List<Customer> searchCustomers(String searchName) {
+
+			return customerDAO.searchCustomers(searchName);
+			
+			
+		}
+		
 }

@@ -24,7 +24,7 @@ public class CustomerController {
 		
 //		
 	
-		@GetMapping("/list")
+	@GetMapping("/list")
 	public String listCustomers (Model model) {
 					
 		//	get customers from the dao through the service layer
@@ -37,7 +37,7 @@ public class CustomerController {
 		return "list-customers";
 	}
 		
-		@GetMapping("/showFormForAdd")
+	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model model) {
 			
 		// create model attribute to bind form data
@@ -49,27 +49,27 @@ public class CustomerController {
 		return "customer-form";
 	}
 		
-		@PostMapping("/saveCustomer")
+	@PostMapping("/saveCustomer")
 	public String saveCustomer(
-			@ModelAttribute("customer") 
+		@ModelAttribute("customer") 
 		Customer customer) {
 			
 			// the method delegates the work to the service layer : CustomerService interface
-			customerService.saveCustomer(customer);	
+		customerService.saveCustomer(customer);	
 			
 			// redirects to the "/customer/list" address forcing the listCustomers method.
-			return "redirect:/customer/list";
-		}
+		return "redirect:/customer/list";
+	}
 		
-		@GetMapping("/showFormForUpdate")
+	@GetMapping("/showFormForUpdate")
 	public String shoFromForUpdate(
-			@RequestParam("customerId")
-		int id,
+		@RequestParam("customerId") 
+		int id, 
 		Model model) {
 			
 			// get the customer via Service layer
 			Customer
-				customer = customerService.getCustomer(id);
+			customer = customerService.getCustomer(id);
 									
 			// set customer as model attribute to pre-populate the form
 			model.addAttribute("customer", customer);
@@ -78,16 +78,55 @@ public class CustomerController {
 			return "customer-form";
 	}
 		
-		@GetMapping("/delete")
+	@GetMapping("/delete")
 	public String deleteCustomer(
-			@RequestParam("customerId")
-		int id) {
+		@RequestParam("customerId") int id) {
 		
-		// delete the customer via the service layer
-		customerService.deleteCustomer(id);
+			// delete the customer via the service layer
+			customerService.deleteCustomer(id);
 				
-		// forces refreshing the list by calling the listCustomers method with an address 
-		return "redirect:/customer/list";
+			// forces refreshing the list by calling the listCustomers method with an address 
+			return "redirect:/customer/list";
+	}
+		
+	@GetMapping("/search")
+	public String searchCustomers(
+		@RequestParam("theSearchName")
+		String searchName, Model model) {
+		
+			List<Customer>
+				customers = customerService.searchCustomers(searchName);
+			
+			model.addAttribute("customers", customers);
+			
+			return "list-customers";
 	}
 		
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

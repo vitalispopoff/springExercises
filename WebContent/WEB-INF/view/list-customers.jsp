@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html>
 
@@ -25,15 +26,34 @@
 			
 			<div id="container">
 				<div id="content">
-				
-					<!-- "add a customer" button  -->				
-					<input 
-							type="button" 
-							value="Add Customer"
-							onclick="window.location.href='showFormForAdd'; return false;"
-							class="add-button"
-					/>
-				
+					
+					<!-- upper menu: add customer | search -->
+					<table>
+						<tr>
+							<td>
+								<!-- "add a customer" button  -->				
+								<input 
+									type="button" 
+									value="Add Customer"
+									onclick="window.location.href='showFormForAdd'; return false;"
+									class="add-button"/>
+							</td>					
+							<td>
+								<!-- the search box  -->
+								<form:form action="search" method="GET">
+									Search by name:
+									<input 
+										type="text"
+										name="theSearchName" />
+									<input
+										type="submit"
+										value="Search"
+										class="add-button" />
+								</form:form>
+							</td>
+						</tr>
+					</table>
+					
 					<!-- add out html table here -->				
 					<table>
 						<tr>
@@ -46,11 +66,15 @@
 						<!-- loop over and print the customers -->
 						<c:forEach var="tempCustomer" items="${customers}">
 						
-						<!-- constructing an update link with customer.id ;  -->
-						
+						<!-- constructing an update link with customer.id ;  -->						
 						<c:url var="updateLink" value="/customer/showFormForUpdate">
 							<c:param name="customerId" value="${tempCustomer.id}" />
-						</c:url>	
+						</c:url>
+						
+						<!-- constructing a delete link with customer.id ;  -->						
+						<c:url var="deleteLink" value="/customer/delete">
+							<c:param name="customerId" value="${tempCustomer.id}" />
+						</c:url>								
 										 
 							<tr>
 								<td> ${tempCustomer.firstName}</td>
@@ -58,6 +82,9 @@
 								<td> ${tempCustomer.email}</td>
 								<td> <!-- display the update link -->
 									<a href="${updateLink}">Update</a>
+									|
+									<a href="${deleteLink}"
+										onclick="if (!(confirm('Are You sure to delete the customer?'))) return false">Delete</a>	<!-- onclick provides a JS piece prompting a approval window -->
 								</td> 
 							</tr>
 						

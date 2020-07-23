@@ -13,20 +13,20 @@ import spring.exercise.springdemo.entity.Customer;
 	@Repository
 public class CustomerDAOImpl implements CustomerDAO {
 	
-		@Autowired							//	inject the session factory
+	@Autowired							//	inject the session factory
 	private SessionFactory
 		sessionFactory;
 		
 //		
 	
-		@Override
+	@Override
 	public List<Customer> getCustomers() {
 			
 		Session								//	get the current hibernate session 
 			currentSession = sessionFactory.getCurrentSession();
 		
 		Query<Customer> 					// 	create a sorting-by-lastName query 
-			query = currentSession.createQuery("from Customer order by lastName", Customer.class);
+			query = currentSession.createQuery("from Customer order by lastName, firstName", Customer.class);
 		
 		List<Customer>						//	execute the query 
 			customers = query.getResultList();
@@ -34,7 +34,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return customers;					//	return result list from the query 
 	}
 	
-		@Override							// the saveCustomer() is finally processed here :
+	@Override							// the saveCustomer() is finally processed here :
 	public void saveCustomer(Customer customer) {
 							
 		Session								//	get current hibernate session
@@ -43,7 +43,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		currentSession.saveOrUpdate(customer);		//	depending on the situation: saves new customer or updates a customer existing already in the db 									
 	}
 
-		@Override
+	@Override
 	public Customer getCustomer(int id) {
 		
 		Session								//	get the current hibernate session
@@ -55,7 +55,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return customer;					//	return the retrieved customer 
 	}
 
-		@Override
+	@Override
 	public void deleteCustomer(int id) {
 		
 		Session
@@ -72,4 +72,28 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 //		currentSession.delete(cache);
 	}
+
+	@Override
+	public List<Customer> searchCustomers(String searchName) {
+		
+		Session
+			currentSession = sessionFactory.getCurrentSession();
+		Query<Customer>
+			query = null;
+		
+
+		if(searchName!= null && searchName.trim().length() > 0) {
+			query = currentSession.createQuery(
+						"from Customer where lower(firstName) like :theName or lower (lastName) like :theName order by lastName, firstName", Customer.class);
+		
+			query.setParameter("theName", "%" + searchName.toLowerCase()+"%");			
+		}
+		else {	// if searchName is empty
+			query = currentSession.createQuery("from Customer order by lastName, firstName", Customer.class);
+		}
+		
+		List<Customer> customers = query.getResultList();
+
+			return customers;
+		}
 }
