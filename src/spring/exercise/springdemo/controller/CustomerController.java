@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.exercise.springdemo.entity.Customer;
 import spring.exercise.springdemo.service.CustomerService;
@@ -20,11 +21,12 @@ public class CustomerController {
 		@Autowired				//	injecting the customerService instead of the customerDAO, as the transaction layer has been moved to the Service package
 	private CustomerService 
 		customerService;
+		
+//		
 	
 		@GetMapping("/list")
 	public String listCustomers (Model model) {
-			
-		
+					
 		//	get customers from the dao through the service layer
 		List<Customer>		 
 			customers = customerService.getCustomers();
@@ -44,9 +46,8 @@ public class CustomerController {
 		
 		model.addAttribute("customer", customer);
 			
-			
-			return "customer-form";
-		}
+		return "customer-form";
+	}
 		
 		@PostMapping("/saveCustomer")
 	public String saveCustomer(
@@ -58,5 +59,22 @@ public class CustomerController {
 			
 			return "redirect:/customer/list";
 		}
+		
+		@GetMapping("/showFormForUpdate")
+	public String shoFromForUpdate(
+			@RequestParam("customerId")
+		int id,
+		Model model) {
+			
+			// get the customer via Service layer
+			Customer
+				customer = customerService.getCustomer(id);
+									
+			// set customer as model attribute to pre-populate the form
+			model.addAttribute("customer", customer);
+			
+			// return the address to the form 			
+			return "customer-form";
+	}
 		
 }

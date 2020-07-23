@@ -15,6 +15,8 @@ public class CustomerServiceImpl implements CustomerService {
 		@Autowired
 	private CustomerDAO
 		customerDAO;
+		
+//		
 			
 		@Override
 		@Transactional
@@ -29,5 +31,11 @@ public class CustomerServiceImpl implements CustomerService {
 		// even tho the customerServiceImpl takes care of the save method contracted by its interface, 
 		//	it's only a facade, so the work is sent to the DAO interface 			
 		customerDAO.saveCustomer(customer);					
+	}
+
+		@Override
+		@Transactional
+	public Customer getCustomer(int id) {
+		return customerDAO.getCustomer(id);
 	}
 }
