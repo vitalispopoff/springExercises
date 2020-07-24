@@ -11,36 +11,12 @@ public class MyDemoLoggingAspect {
 		
 			
 	//	starting with an @Before advice
-			/**
-			 * what's under the hood : 
-			 * execution(
-			 *  public - access modifier
-			 *  void - return type
-			 *  spring.exercise.aopdemo.dao.AccountDAO.addAccount - fully qualified address . method name
-			 *  (
-			 *  spring.exercise.aopdemo.Account - fully qualified address of a input parameter type
-			 *  ,
-			 *  boolean - the other input type
-			 *  ))
-			 */
 		
-		@Before("execution(public void spring.exercise.aopdemo.dao.AccountDAO.addAccount(spring.exercise.aopdemo.Account, boolean))")	// 
+		@Before("execution(public void spring.exercise.aopdemo.dao.*.*(..))")	// 
 	public void beforeAddAccountAdvice() {
 		
 		System.out.println("... @Before access return package method (input, input) ");
 	}
-		
-			/**
-			 * what's under the hood :
-			 * execution(
-			 *  * - return type
-			 *  add* - method name
-			 *  (
-			 *  String - first input type
-			 *  ,
-			 *  * - other input type
-			 *  ))
-			 */		
 		
 		@After("execution(* add*(String, * ))")
 	public void afterAddAccountAdvice() {

@@ -11,4 +11,8 @@ public class AccountDAO {
 		
 		System.out.println(getClass() + ": addAccount method init");
 	}
+	
+	public void doWork() {
+		System.out.println("DO WORK!");
+	}
 }

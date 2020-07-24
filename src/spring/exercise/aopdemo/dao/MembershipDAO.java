@@ -19,4 +19,8 @@ public class MembershipDAO {
 	public void addAnotherMember(String string, MembershipDAO accountDAO) {
 		System.out.println("... > method w/ 1 explicit parameter, and another as '*' ");
 	}
+	
+	public void goToSleep() {
+		System.out.println("S l E E P !");
+	}
 }
