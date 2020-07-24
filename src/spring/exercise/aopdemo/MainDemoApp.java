@@ -2,6 +2,7 @@ package spring.exercise.aopdemo;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import spring.exercise.aopdemo.aspect.MyDemoLoggingAspect;
 import spring.exercise.aopdemo.dao.*;
 
 public class MainDemoApp {
@@ -17,13 +18,14 @@ public class MainDemoApp {
 		MembershipDAO															//	...
 			membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 					
-		accountDAO.addAccount(new Account());												//	call the method of a component class		
+		accountDAO.addAccount(new Account(),true);												//	call the method of a component class		
 		
 //		membershipDAO.addSillyMember();											//	call the method of another component class
 
 //		membershipDAO.addAccount();
 		
 		membershipDAO.addAnotherMember("string", membershipDAO);
+		
 		
 				
 		context.close();														//	close the context		

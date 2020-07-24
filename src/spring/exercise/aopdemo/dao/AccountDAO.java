@@ -7,8 +7,8 @@ import spring.exercise.aopdemo.Account;
 @Component
 public class AccountDAO {
 
-	public void addAccount(Account account) {
+	public void addAccount(Account account, boolean vipFlag) {
 		
-		System.out.println(getClass() + ": addAccount method in execution");
+		System.out.println(getClass() + ": addAccount method init");
 	}
 }

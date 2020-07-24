@@ -19,13 +19,15 @@ public class MyDemoLoggingAspect {
 			 *  spring.exercise.aopdemo.dao.AccountDAO.addAccount - fully qualified address . method name
 			 *  (
 			 *  spring.exercise.aopdemo.Account - fully qualified address of a input parameter type
+			 *  ,
+			 *  boolean - the other input type
 			 *  ))
 			 */
 		
-		@Before("execution(public void spring.exercise.aopdemo.dao.AccountDAO.addAccount(spring.exercise.aopdemo.Account))")	// 
+		@Before("execution(public void spring.exercise.aopdemo.dao.AccountDAO.addAccount(spring.exercise.aopdemo.Account, boolean))")	// 
 	public void beforeAddAccountAdvice() {
 		
-		System.out.println("... @Before access return package method (input) ");
+		System.out.println("... @Before access return package method (input, input) ");
 	}
 		
 			/**
