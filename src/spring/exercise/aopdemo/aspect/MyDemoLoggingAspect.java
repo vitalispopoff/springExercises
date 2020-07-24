@@ -9,8 +9,7 @@ public class MyDemoLoggingAspect {
 
 	//	it's where all of the related advices for logging are stored
 		
-	
-		
+			
 	//	starting with an @Before advice
 		
 		@Before("execution(public void spring.exercise.aopdemo.dao.AccountDAO.addAccount())")
@@ -19,7 +18,7 @@ public class MyDemoLoggingAspect {
 		System.out.println("... beforeAddAccountAdvice execution w/ @Before advice on addAccount method");
 	}
 		
-		@After("execution(public void add*())")
+		@After("execution(* add*())")
 	public void afterAddAccountAdvice() {
 
 		System.out.println("...afterAddAccountAdvice in progress w @After advice on add* method");
