@@ -13,9 +13,15 @@ public class MyDemoLoggingAspect {
 		
 	//	starting with an @Before advice
 		
-		@Before("execution(public void addAccount())")
+		@Before("execution(public void spring.exercise.aopdemo.dao.AccountDAO.addAccount())")
 	public void beforeAddAccountAdvice() {
 		
 		System.out.println("... beforeAddAccountAdvice execution w/ @Before advice on addAccount method");
+	}
+		
+		@After("execution(public void add*())")
+	public void afterAddAccountAdvice() {
+
+		System.out.println("...afterAddAccountAdvice in progress w @After advice on add* method");
 	}
 }

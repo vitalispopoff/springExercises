@@ -9,5 +9,10 @@ public class MembershipDAO {
 		
 		System.out.println("... "+getClass()+"> addAccount method in progress");
 	}
+	
+	public void addSillyMember() {
+		
+		System.out.println("... that maaaaad mate...");
+	}
 
 }
