@@ -19,9 +19,12 @@ public class MainDemoApp {
 					
 		accountDAO.addAccount();												//	call the method of a component class		
 		
-		membershipDAO.addSillyMember();											//	call the method of another component class
+//		membershipDAO.addSillyMember();											//	call the method of another component class
 
-		membershipDAO.addAccount();
+//		membershipDAO.addAccount();
+		
+		membershipDAO.addAnotherMember("string", membershipDAO);
+		
 				
 		context.close();														//	close the context		
 	}

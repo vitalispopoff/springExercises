@@ -18,7 +18,7 @@ public class MyDemoLoggingAspect {
 		System.out.println("... beforeAddAccountAdvice execution w/ @Before advice on addAccount method");
 	}
 		
-		@After("execution(* add*())")
+		@After("execution(* add*(String, * ))")
 	public void afterAddAccountAdvice() {
 
 		System.out.println("...afterAddAccountAdvice in progress w @After advice on add* method");

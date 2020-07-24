@@ -14,5 +14,9 @@ public class MembershipDAO {
 		
 		System.out.println("... that maaaaad mate...");
 	}
-
+	
+	
+	public void addAnotherMember(String string, MembershipDAO accountDAO) {
+		System.out.println("... > method w/ 1 explicit parameter, and another as '*' ");
+	}
 }
