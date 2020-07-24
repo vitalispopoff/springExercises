@@ -6,11 +6,6 @@ import org.springframework.stereotype.Component;
 	@Aspect
 	@Component
 public class MyDemoLoggingAspect {
-
-	//	it's where all of the related advices for logging are stored
-		
-			
-	//	starting with an @Before advice
 		
 		@Before("execution(public void spring.exercise.aopdemo.dao.*.*(..))")	// 
 	public void beforeAddAccountAdvice() {

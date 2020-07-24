@@ -1,8 +1,5 @@
 package spring.exercise.aopdemo;
 
-//import org.springframework.stereotype.Component;
-
-//	@Component
 public class Account {
 		
 	private String 
@@ -34,6 +31,5 @@ public class Account {
 	@Override
 	public String toString() {
 		return "Account={name=" + name + ", level=" + level + "}";
-	}
-	
+	}	
 }

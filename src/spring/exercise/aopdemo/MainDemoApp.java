@@ -9,27 +9,24 @@ public class MainDemoApp {
 	
 	public static void main (String[] args) {
 									
-		AnnotationConfigApplicationContext										//	read spring cfg java class
+		AnnotationConfigApplicationContext
 			context = new AnnotationConfigApplicationContext(DemoConfig.class);
 					
-		AccountDAO																//	get the bean from spring container 
+		AccountDAO 
 			accountDAO = context.getBean("accountDAO", AccountDAO.class);
 		
-		MembershipDAO															//	...
+		MembershipDAO
 			membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 					
-		accountDAO.addAccount(new Account(),true);												//	call the method of a component class		
+		accountDAO.addAccount(new Account(),true);		
 		
-		membershipDAO.addSillyMember();											//	call the method of another component class
-
+		membershipDAO.addSillyMember();
 		membershipDAO.addAccount();
-		
 		membershipDAO.addAnotherMember("string", membershipDAO);
+		membershipDAO.goToSleep();
 		
 		accountDAO.doWork();
-		
-		membershipDAO.goToSleep();
-				
-		context.close();														//	close the context		
+						
+		context.close();		
 	}
 }
