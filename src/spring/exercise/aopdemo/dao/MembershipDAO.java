@@ -2,9 +2,14 @@ package spring.exercise.aopdemo.dao;
 
 import org.springframework.stereotype.Component;
 
+import spring.exercise.aopdemo.Account;
+
 @Component
 public class MembershipDAO {
 	
+	Account 
+		account;
+		
 	public void addAccount() {
 		
 		System.out.println(""+getClass()+"> addAccount method in progress");
@@ -21,5 +26,17 @@ public class MembershipDAO {
 	
 	public void goToSleep() {
 		System.out.println("S l E E P !");
+	}
+	
+	public void setAccount(Account account) {
+		
+		this.account = account;
+		System.out.println("account set");
+	}
+	
+	public Account getAccount() {
+		
+		System.out.println("returning: "+account);
+		return account;
 	}
 }

@@ -20,12 +20,16 @@ public class MainDemoApp {
 					
 		accountDAO.addAccount(new Account(),true);		
 		
-		membershipDAO.addSillyMember();
-		membershipDAO.addAccount();
-		membershipDAO.addAnotherMember("string", membershipDAO);
-		membershipDAO.goToSleep();
+//		membershipDAO.addSillyMember();
+//		membershipDAO.addAccount();
+//		membershipDAO.addAnotherMember("string", membershipDAO);
+//		membershipDAO.goToSleep();
 		
-		accountDAO.doWork();
+		accountDAO.setAccount();
+		
+		membershipDAO.setAccount(new Account("Joe", "novice"));
+		membershipDAO.getAccount();
+		
 						
 		context.close();		
 	}

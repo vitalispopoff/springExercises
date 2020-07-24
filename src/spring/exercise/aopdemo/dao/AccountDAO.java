@@ -6,13 +6,13 @@ import spring.exercise.aopdemo.Account;
 
 @Component
 public class AccountDAO {
-
+	
 	public void addAccount(Account account, boolean vipFlag) {
 		
 		System.out.println(getClass() + ": addAccount method init");
 	}
 	
-	public void doWork() {
-		System.out.println("DO WORK!");
+	public void setAccount() {
+		System.out.println("account set");
 	}
 }
