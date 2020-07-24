@@ -17,7 +17,7 @@ public class MainDemoApp {
 		MembershipDAO															//	...
 			membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 					
-		accountDAO.addAccount();												//	call the method of a component class		
+		accountDAO.addAccount(new Account());												//	call the method of a component class		
 		
 //		membershipDAO.addSillyMember();											//	call the method of another component class
 
