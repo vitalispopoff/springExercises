@@ -7,15 +7,18 @@ import org.springframework.stereotype.Component;
 	@Component
 public class MyDemoLoggingAspect {
 		
-		@Before("execution(public void spring.exercise.aopdemo.dao.*.*(..))")	// 
+		@Pointcut("execution(public void spring.exercise.aopdemo.dao.*.*(..))")
+	private void forDaoPackage() {}
+		
+		@Before("forDaoPackage()")	// 
 	public void beforeAddAccountAdvice() {
 		
-		System.out.println("... @Before access return package method (input, input) ");
+		System.out.println("... > @Before via @Pointcut ");
 	}
 		
-		@After("execution(* add*(String, * ))")
+		@After("forDaoPackage()")
 	public void afterAddAccountAdvice() {
 
-		System.out.println("... @After: * add* (input_1 , *) ");
+		System.out.println("... > @After via @Pointcut ");
 	}
 }
