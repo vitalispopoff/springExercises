@@ -18,5 +18,4 @@ public class MyDemoLoggingAspect {
 		
 		System.out.println("... beforeAddAccountAdvice execution w/ @Before advice on addAccount method");
 	}
-	
 }
