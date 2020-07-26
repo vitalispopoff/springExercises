@@ -2,6 +2,8 @@ package spring.exercise.aopdemo.aspect;
 
 import static spring.exercise.aopdemo.aspect.AopExpressions.expAddress;
 
+import java.util.List;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -15,36 +17,40 @@ import spring.exercise.aopdemo.Account;
 	@Order(2)
 public class MyDemoLoggingAspect {
 		
+		// an advice to show off the @AfterReturning
+		@AfterReturning(
+				pointcut = "* spring.exercise.aopdemo.dao.AccountDAO.findAccounts()",
+				returning = "result")
+		public void afterReturningFindAccountAdvice(
+					JoinPoint joinPoint,
+					List<Account> result) {
+			
+			
+			
+		}
+		
 		@Before(expAddress+"forDao()") 
 	public void beforeAddAccountAdvice(JoinPoint joinPoint) {		
-
-		System.out.println("... > order 2 : 1st advice \n");
 		
-		//	display method signature
-		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		MethodSignature 
+			methodSignature = (MethodSignature) joinPoint.getSignature();
 		
+		System.out.println("... > order 2 : 1st advice \n");		
 		System.out.println("\n > Method: " + methodSignature);
-				
-		//	display method args : 
-		
-		Object[] args = joinPoint.getArgs();
+				 		
+		Object[] 
+			args = joinPoint.getArgs();
 		
 		for (Object cache : args) {
 			System.out.println("   : " + cache);
 			
 			if(cache instanceof Account) {
 				
-				// downcast and print the Account class specific data
 				Account account = (Account) cache;
 				
 				System.out.println("   ... account name: "+ account.getName());
 				System.out.println("   ... account level: "+ account.getLevel());
 			}
-		}
-		
-		
-		
-		
-		
+		}		
 	}
 }

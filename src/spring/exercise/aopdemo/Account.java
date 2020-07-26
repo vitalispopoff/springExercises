@@ -28,8 +28,11 @@ public class Account {
 
 //
 	
-	/*
-	 * @Override public String toString() { return "Account={name=" + name +
-	 * ", level=" + level + "}"; }
-	 */	
+		@Override 
+	public String toString() { 
+		return "Account={name=" + name 
+							+ ", level=" + level 
+							+ "}"; 
+	}
+	 	
 }

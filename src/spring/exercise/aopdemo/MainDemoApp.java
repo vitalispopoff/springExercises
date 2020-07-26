@@ -1,27 +1,24 @@
 package spring.exercise.aopdemo;
 
+import java.util.List;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import spring.exercise.aopdemo.dao.*;
+import spring.exercise.aopdemo.dao.AccountDAO;
 
 public class MainDemoApp {
 	
 	public static void main (String[] args) {
 									
 		AnnotationConfigApplicationContext
-			context = new AnnotationConfigApplicationContext(DemoConfig.class);
-					
+			context = new AnnotationConfigApplicationContext(DemoConfig.class);					
 		AccountDAO 
 			accountDAO = context.getBean("accountDAO", AccountDAO.class);
 		
-		MembershipDAO
-			membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
-					
-		accountDAO.addAccount(new Account("Moe", "banned"),true);		
-		accountDAO.setAccount();
+		List<Account> accounts = accountDAO.findAccounts();
 		
-		membershipDAO.setAccount(new Account("Joe", "novice"));
-		membershipDAO.getAccount();
+		System.out.println("\n...     Main :\n");		
+		System.out.println("...     > "+ accounts+"\n");
 								
 		context.close();		 
 	}
