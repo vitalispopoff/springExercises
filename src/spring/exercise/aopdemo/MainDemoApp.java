@@ -18,18 +18,11 @@ public class MainDemoApp {
 			membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 					
 		accountDAO.addAccount(new Account(),true);		
-		
-//		membershipDAO.addSillyMember();
-//		membershipDAO.addAccount();
-//		membershipDAO.addAnotherMember("string", membershipDAO);
-//		membershipDAO.goToSleep();
-		
 		accountDAO.setAccount();
 		
 		membershipDAO.setAccount(new Account("Joe", "novice"));
 		membershipDAO.getAccount();
-		
-						
+								
 		context.close();		 
 	}
 }

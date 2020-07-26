@@ -4,15 +4,14 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-	@Aspect
+@Aspect
 	@Component
 	@Order(1)
-public class MyDemoLoggingAspect {
-		
-		// pointcuts moved to the AopExpressions
-
-		@Before("forDao()") 
-	public void beforeAddAccountAdvice() {		
-		System.out.println("... > 1st advice \n");
+public class MyCloudLogAsyncAspect {
+	
+		@Before("forDao()")
+	public void logToCloudAdvice() {
+		System.out.println("... > loggin' to Cloud\n");
 	}
+
 }

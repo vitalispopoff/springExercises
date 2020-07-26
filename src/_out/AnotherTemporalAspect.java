@@ -1,4 +1,4 @@
-package spring.exercise.aopdemo.aspect;
+package _out;
 
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;

@@ -7,12 +7,11 @@ import org.springframework.stereotype.Component;
 	@Aspect
 	@Component
 	@Order(1)
-public class MyDemoLoggingAspect {
+public class MyApiAnalyticsAspect {
 		
-		// pointcuts moved to the AopExpressions
-
-		@Before("forDao()") 
-	public void beforeAddAccountAdvice() {		
-		System.out.println("... > 1st advice \n");
+		@Before("forDao()")
+	public void performApiAnalyticAdvice() {
+		System.out.println("... > api analytics\n");
 	}
+
 }
