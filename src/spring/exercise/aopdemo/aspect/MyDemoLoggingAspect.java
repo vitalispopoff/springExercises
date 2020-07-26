@@ -4,7 +4,7 @@ import static spring.exercise.aopdemo.aspect.AopExpressions.expAddress;
 
 import java.util.List;
 
-import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.*;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
@@ -18,8 +18,37 @@ import spring.exercise.aopdemo.Account;
 public class MyDemoLoggingAspect {
 		
 	private final String
-		localExpAddress = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts(..))";
+		localExpAddress = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts(..))",
+		localExpAddress2 = "execution(* getFortune(..))";
 		
+	
+		@Around(localExpAddress2)
+	public Object aroundFortuneAdvice(
+			ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+		
+			String
+				method = proceedingJoinPoint.getSignature().toShortString();
+			
+		//	print the advised method
+			System.out.println("    > @Around\n      > " + method);
+						
+		//	get the initial timestamp
+			long
+				initialTime = System.currentTimeMillis();
+			
+		//	execute the advised method
+			Object result = proceedingJoinPoint.proceed();
+			
+		// get the terminal timestamp
+			long
+				terminalTime = System.currentTimeMillis();
+			
+		// print the time result
+			
+		return ("      > duration : " + (terminalTime - initialTime) + "ms");
+	}
+	
+	
 		@After(localExpAddress)
 	public void afterRegardlessAccountAdvice() {
 			System.out.println("    > @After - so just you know when it fires.");
@@ -32,14 +61,13 @@ public class MyDemoLoggingAspect {
 			JoinPoint joinPoint,
 			Throwable exception) {
 		
-		//	printing the method being advised
 		String
 			method = joinPoint.getSignature().toShortString();
 		
-		System.out.println("    > @AfterThrowing\n      > "+ method);
-			
-		//	logging the exception
-		System.out.println("    > threw :\n      > " + exception);				
+		System.out.println("    > @AfterThrowing\n      > "
+							+ method
+							+ "\n    > threw :\n      > " 
+							+ exception);				
 	}
 				
 		@AfterReturning(
@@ -52,11 +80,11 @@ public class MyDemoLoggingAspect {
 		String 
 			method = joinPoint.getSignature().toShortString();
 
-		System.out.println("    > @AfterReturning\n      > "+ method);
-		System.out.println("    > returned :\n      > " + result);			
+		System.out.println("    > @AfterReturning\n      > "
+							+ method
+							+"\n    > returned :\n      > " 
+							+ result);
 		
-		//	post-process the result:
-		//		uppercase the account names 
 		convertToUpperCase(result);
 	}
 		
@@ -71,8 +99,9 @@ public class MyDemoLoggingAspect {
 		MethodSignature 
 			methodSignature = (MethodSignature) joinPoint.getSignature();
 		
-		System.out.println("... > order 2 : 1st advice \n");		
-		System.out.println("\n > Method: " + methodSignature);
+		System.out.println("... > order 2 : 1st advice \n"
+							+ "\n\n > Method: " 
+							+ methodSignature);
 				 		
 		Object[] 
 			args = joinPoint.getArgs();
@@ -84,8 +113,10 @@ public class MyDemoLoggingAspect {
 				Account 
 					account = (Account) cache;
 				
-				System.out.println("   ... account name: "+ account.getName());
-				System.out.println("   ... account level: "+ account.getLevel());
+				System.out.println("   ... account name: "
+									+ account.getName()
+									+ "\n   ... account level: "
+									+ account.getLevel());
 			}
 		}
 	}
