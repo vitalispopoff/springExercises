@@ -17,26 +17,29 @@ import spring.exercise.aopdemo.Account;
 	@Order(2)
 public class MyDemoLoggingAspect {
 		
-		// an advice to show off the @AfterReturning
 		@AfterReturning(
 				pointcut = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts())",
 				returning = "result")
 	public void afterReturningFindAccountAdvice(
 			JoinPoint joinPoint,
 			List<Account> result) {
-			
-		// print out the advised method			
+						
 		String 
 			method = joinPoint.getSignature().toShortString();
-		System.out.println("        > @AfterReturning\n          > "+ method);
-			
-		// print out the result of the advised method.
-		System.out.println("        > returned :\n          > " + result);
+
+		System.out.println("    > @AfterReturning\n      > "+ method);
+		System.out.println("    > returned :\n      > " + result);			
 		
+		//	post-process the result:
+		//		uppercase the account names 
+		convertToUpperCase(result);
+	}
 		
-			
-		}
-		
+	private void convertToUpperCase(List<Account> result) {
+		for(Account account : result)
+			account.setName(account.getName().toUpperCase());
+	}
+
 		@Before(expAddress+"forDao()") 
 	public void beforeAddAccountAdvice(JoinPoint joinPoint) {		
 		
@@ -59,6 +62,6 @@ public class MyDemoLoggingAspect {
 				System.out.println("   ... account name: "+ account.getName());
 				System.out.println("   ... account level: "+ account.getLevel());
 			}
-		}		
+		}
 	}
 }
