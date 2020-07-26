@@ -17,7 +17,7 @@ public class MainDemoApp {
 		MembershipDAO
 			membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 					
-		accountDAO.addAccount(new Account(),true);		
+		accountDAO.addAccount(new Account("Moe", "banned"),true);		
 		accountDAO.setAccount();
 		
 		membershipDAO.setAccount(new Account("Joe", "novice"));

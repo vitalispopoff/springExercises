@@ -8,6 +8,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import spring.exercise.aopdemo.Account;
+
 	@Aspect
 	@Component
 	@Order(2)
@@ -23,7 +25,24 @@ public class MyDemoLoggingAspect {
 		
 		System.out.println("\n > Method: " + methodSignature);
 				
-		//	display method args
+		//	display method args : 
+		
+		Object[] args = joinPoint.getArgs();
+		
+		for (Object cache : args) {
+			System.out.println("   : " + cache);
+			
+			if(cache instanceof Account) {
+				
+				// downcast and print the Account class specific data
+				Account account = (Account) cache;
+				
+				System.out.println("   ... account name: "+ account.getName());
+				System.out.println("   ... account level: "+ account.getLevel());
+			}
+		}
+		
+		
 		
 		
 		
