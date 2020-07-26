@@ -19,13 +19,21 @@ public class MyDemoLoggingAspect {
 		
 		// an advice to show off the @AfterReturning
 		@AfterReturning(
-				pointcut = "* spring.exercise.aopdemo.dao.AccountDAO.findAccounts()",
+				pointcut = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts())",
 				returning = "result")
-		public void afterReturningFindAccountAdvice(
-					JoinPoint joinPoint,
-					List<Account> result) {
+	public void afterReturningFindAccountAdvice(
+			JoinPoint joinPoint,
+			List<Account> result) {
 			
+		// print out the advised method			
+		String 
+			method = joinPoint.getSignature().toShortString();
+		System.out.println("        > @AfterReturning\n          > "+ method);
 			
+		// print out the result of the advised method.
+		System.out.println("        > returned :\n          > " + result);
+		
+		
 			
 		}
 		
