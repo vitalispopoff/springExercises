@@ -15,7 +15,12 @@ public class MainDemoApp {
 		AccountDAO 
 			accountDAO = context.getBean("accountDAO", AccountDAO.class);
 		
-		List<Account> accounts = accountDAO.findAccounts();
+		List<Account> accounts = null;
+		
+		try {			
+			accounts = accountDAO.findAccounts();
+		}
+		catch (Exception e) {System.out.println("\n > exception: " + e);
 		
 		System.out.println("\n...     Main :\n");		
 		System.out.println("...     > "+ accounts+"\n");
