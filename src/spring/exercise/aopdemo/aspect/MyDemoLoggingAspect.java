@@ -17,8 +17,28 @@ import spring.exercise.aopdemo.Account;
 	@Order(2)
 public class MyDemoLoggingAspect {
 		
+	private final String
+		localExpAddress = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts(..))";
+				
+		@AfterThrowing(
+				pointcut = localExpAddress,
+				throwing = "exception")
+	public void afterThrowExceptionFindAccountAdvice(
+			JoinPoint joinPoint,
+			Throwable exception) {
+		
+		//	printing the method being advised
+		String
+			method = joinPoint.getSignature().toShortString();
+		
+		System.out.println("    > @AfterThrowing\n      > "+ method);
+			
+		//	logging the exception
+		System.out.println("    > threw :\n      > " + exception);				
+	}
+		
 		@AfterReturning(
-				pointcut = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts())",
+				pointcut = localExpAddress,
 				returning = "result")
 	public void afterReturningFindAccountAdvice(
 			JoinPoint joinPoint,
@@ -55,9 +75,9 @@ public class MyDemoLoggingAspect {
 		for (Object cache : args) {
 			System.out.println("   : " + cache);
 			
-			if(cache instanceof Account) {
-				
-				Account account = (Account) cache;
+			if(cache instanceof Account) {				
+				Account 
+					account = (Account) cache;
 				
 				System.out.println("   ... account name: "+ account.getName());
 				System.out.println("   ... account level: "+ account.getLevel());

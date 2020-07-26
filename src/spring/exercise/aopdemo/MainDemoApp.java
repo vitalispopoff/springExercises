@@ -13,14 +13,18 @@ public class MainDemoApp {
 		AnnotationConfigApplicationContext
 			context = new AnnotationConfigApplicationContext(DemoConfig.class);					
 		AccountDAO 
-			accountDAO = context.getBean("accountDAO", AccountDAO.class);
-		
-		List<Account> accounts = null;
+			accountDAO = context.getBean("accountDAO", AccountDAO.class);		
+		List<Account> 
+			accounts = null;
 		
 		try {			
-			accounts = accountDAO.findAccounts();
+			//	adding a boolean flag to simulate exception
+			boolean 
+				tripWire = true;
+			
+			accounts = accountDAO.findAccounts(tripWire); 
 		}
-		catch (Exception e) {System.out.println("\n > exception: " + e);
+		catch (Exception e) {System.out.println("\n > main catch exception: " + e);}
 		
 		System.out.println("\n...     Main :\n");		
 		System.out.println("...     > "+ accounts+"\n");

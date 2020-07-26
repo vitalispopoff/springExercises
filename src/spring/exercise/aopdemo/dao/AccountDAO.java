@@ -13,11 +13,13 @@ public class AccountDAO {
 		name,
 		serviceCode;
 	
-	 public List<Account> findAccounts() {
-		 
-		 List<Account> accounts = new ArrayList<>();
-		 
-		 // create sample accounts and add them to the list
+	 public List<Account> findAccounts(boolean tripWire) {
+		 		 
+		 if (tripWire) {
+			 throw new RuntimeException("No soup for you!");
+		 }
+		 List<Account> 
+		 	accounts = new ArrayList<>();		 
 		 Account
 		 	temp1 = new Account("John", "Silver"),
 		 	temp2 = new Account("Madhu", "Admin"),
@@ -27,7 +29,7 @@ public class AccountDAO {
 		 accounts.add(temp2);
 		 accounts.add(temp3);
 		 
-		 return accounts;
+		 return accounts;		 
 	 }
 	
 	public void addAccount(Account account, boolean vipFlag) {
