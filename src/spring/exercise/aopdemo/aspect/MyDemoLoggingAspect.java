@@ -19,42 +19,48 @@ import spring.exercise.aopdemo.Account;
 public class MyDemoLoggingAspect {
 		
 	private Logger
-		logger = Logger.getLogger(getClass().getName());		
+		logger = Logger.getLogger(getClass().getName());	
+	
 	private final String
 		localExpAddress = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts(..))",
 		localExpAddress2 = "execution(* getFortune(..))";
-		
-	
+			
 		@Around(localExpAddress2)
 	public Object aroundFortuneAdvice(
 			ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 		
 			String
-				method = proceedingJoinPoint.getSignature().toShortString();
-			
-		//	print the advised method
-			logger.info("    > @Around\n      > " + method);
+				method = proceedingJoinPoint.getSignature().toShortString();			
+			logger.info("\n      > @Around\n      > " + method);
 						
-		//	get the initial timestamp
 			long
-				initialTime = System.currentTimeMillis();
+				initialTime = System.currentTimeMillis();			
+			Object 
+				result = null; 			
 			
-		//	execute the advised method
-			Object result = proceedingJoinPoint.proceed();
+			try {
+				result = proceedingJoinPoint.proceed();
+			} 
+			catch (Exception  e) {
+				
+				// log exception
+				logger.warning(e.getMessage());
+				
+				// give custom message
+				result = "crap.";
+			}
 			
-		// get the terminal timestamp
 			long
 				terminalTime = System.currentTimeMillis();
 			
-		// print the time result
+			logger.info("\n      > duration : " + (terminalTime - initialTime) + "ms");
 			
-		return ("      > duration : " + (terminalTime - initialTime) + "ms");
+		return result;
 	}
-	
-	
+		
 		@After(localExpAddress)
 	public void afterRegardlessAccountAdvice() {
-			logger.info("    > @After - so just you know when it fires.");
+			logger.info("\n    > @After - so just you know when it fires.");
 	}
 	
 		@AfterThrowing(
@@ -67,9 +73,9 @@ public class MyDemoLoggingAspect {
 		String
 			method = joinPoint.getSignature().toShortString();
 		
-		logger.info("    > @AfterThrowing\n      > "
+		logger.info("\n      > @AfterThrowing\n      > "
 							+ method
-							+ "\n    > threw :\n      > " 
+							+ "\n      > threw :\n      > " 
 							+ exception);				
 	}
 				
@@ -83,9 +89,9 @@ public class MyDemoLoggingAspect {
 		String 
 			method = joinPoint.getSignature().toShortString();
 
-		logger.info("    > @AfterReturning\n      > "
+		logger.info("\n      > @AfterReturning\n      > "
 							+ method
-							+"\n    > returned :\n      > " 
+							+"\n      > returned :\n      > " 
 							+ result);
 		
 		convertToUpperCase(result);
@@ -102,7 +108,7 @@ public class MyDemoLoggingAspect {
 		MethodSignature 
 			methodSignature = (MethodSignature) joinPoint.getSignature();
 		
-		logger.info("... > order 2 : 1st advice \n"
+		logger.info("\n      > order 2 : 1st advice \n"
 							+ "\n\n > Method: " 
 							+ methodSignature);
 				 		
@@ -110,13 +116,13 @@ public class MyDemoLoggingAspect {
 			args = joinPoint.getArgs();
 		
 		for (Object cache : args) {
-			logger.info("   : " + cache);
+			logger.info("\n   : " + cache);
 			
 			if(cache instanceof Account) {				
 				Account 
 					account = (Account) cache;
 				
-				logger.info("   ... account name: "
+				logger.info("\n   ... account name: "
 									+ account.getName()
 									+ "\n   ... account level: "
 									+ account.getLevel());

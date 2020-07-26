@@ -7,15 +7,21 @@ import org.springframework.stereotype.Component;
 	@Component
 public class TrafficFortuneService {
 	
-	public String getFortune() {
-		
-		//simulate a delay		
-		try {
-		TimeUnit.SECONDS.sleep(5);
+	public String getFortune() {				
+		try { 
+			TimeUnit.SECONDS.sleep(5); 
 		}
-		catch (InterruptedException e) {e.printStackTrace();}
-		// return a fortune
+		catch (InterruptedException e) { 
+			e.printStackTrace(); 
+		}
 		
 		return "expect heavy traffic";
+	}
+
+	public String getFortune(boolean throwException) {		
+		if (throwException) 
+			throw new RuntimeException ("Wait. What?");
+		
+		return getFortune();
 	}
 }

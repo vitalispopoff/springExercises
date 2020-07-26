@@ -12,6 +12,7 @@ public class AccountDAO {
 	
 	private Logger
 		logger = Logger.getLogger(getClass().getName());
+	
 	private String
 		name,
 		serviceCode;
@@ -40,8 +41,6 @@ public class AccountDAO {
 		logger.info(getClass() + ": addAccount method init");
 	}
 	
-	public void setAccount() {
-		logger.info("account set");
-	}
+	public void setAccount() { logger.info("account set"); }
 
 }

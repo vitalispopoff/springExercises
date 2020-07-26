@@ -10,17 +10,16 @@ import spring.exercise.aopdemo.Account;
 public class MembershipDAO {
 	
 	private Logger
-		logger = Logger.getLogger(getClass().getName());		
+		logger = Logger.getLogger(getClass().getName());	
+	
 	Account 
 		account;
 		
-	public void addAccount() {
-		
+	public void addAccount() {		
 		logger.info(""+getClass()+"> addAccount method in progress");
 	}
 	
-	public void addSillyMember() {
-		
+	public void addSillyMember() {		
 		logger.info("that maaaaad mate...");
 	}	
 	
@@ -32,14 +31,12 @@ public class MembershipDAO {
 		logger.info("S l E E P !");
 	}
 	
-	public void setAccount(Account account) {
-		
+	public void setAccount(Account account) {		
 		this.account = account;
 		logger.info("account set");
 	}
 	
-	public Account getAccount() {
-		
+	public Account getAccount() {		
 		logger.info("returning: "+account);
 		return account;
 	}

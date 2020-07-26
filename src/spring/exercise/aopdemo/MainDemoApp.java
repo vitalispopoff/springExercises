@@ -14,19 +14,23 @@ public class MainDemoApp {
 	public static void main (String[] args) {
 									
 		AnnotationConfigApplicationContext
-			context = new AnnotationConfigApplicationContext(DemoConfig.class);					
+			context = new AnnotationConfigApplicationContext(DemoConfig.class);
+		
 		TrafficFortuneService 
 			fortuneService = context.getBean("trafficFortuneService", TrafficFortuneService.class);		
 		
 		logger.info("\n main > ");
 		
-		String 
-			data = fortuneService.getFortune();
+		boolean
+			throwException = true;
 		
-		logger.info("      > " 
+		String 
+			data = fortuneService.getFortune(throwException);
+		
+		logger.info("\n      > " 
 					+ data
-					+ "\n    done >\n");
-										
+					+ "\n done >\n");
+
 		context.close();		 
 	}
 }
