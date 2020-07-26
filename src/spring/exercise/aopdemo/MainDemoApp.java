@@ -1,10 +1,9 @@
 package spring.exercise.aopdemo;
 
-import java.util.List;
-
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import spring.exercise.aopdemo.dao.AccountDAO;
+import spring.exercise.aopdemo.service.TrafficFortuneService;
 
 public class MainDemoApp {
 	
@@ -12,25 +11,15 @@ public class MainDemoApp {
 									
 		AnnotationConfigApplicationContext
 			context = new AnnotationConfigApplicationContext(DemoConfig.class);					
-		AccountDAO 
-			accountDAO = context.getBean("accountDAO", AccountDAO.class);		
-		List<Account> 
-			accounts = null;
+		TrafficFortuneService 
+			fortuneService = context.getBean("trafficFortuneService", TrafficFortuneService.class);		
 		
-		try {			
-			//	adding a boolean flag to simulate exception
-			boolean 
-				tripWire = true;
-			
-			System.out.println("\n > > Case 1\n");
-			accounts = accountDAO.findAccounts(false);
-			System.out.println("\n > > Case 2\n");
-			accounts = accountDAO.findAccounts(true); 
-		}
-		catch (Exception e) {System.out.println("\n > main catch exception: " + e);}
+		System.out.println("\n main > ");
 		
-		System.out.println("\n...     Main :\n");		
-		System.out.println("...     > "+ accounts+"\n");
+		String data = fortuneService.getFortune();
+		System.out.println("      > " + data);
+		System.out.println(" done >\n");
+		
 								
 		context.close();		 
 	}
