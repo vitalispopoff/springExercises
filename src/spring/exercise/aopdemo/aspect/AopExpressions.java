@@ -3,7 +3,10 @@ package spring.exercise.aopdemo.aspect;
 import org.aspectj.lang.annotation.*;
 
 	@Aspect
-public class AopExpressions {
+public class AopExpressions {	
+		
+		public static final String 
+			expAddress ="spring.exercise.aopdemo.aspect.AopExpressions.";
 		
 		private final String
 		exp_01 = "execution(public void spring.exercise.aopdemo.dao.*.",
