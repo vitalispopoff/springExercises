@@ -3,6 +3,7 @@ package spring.exercise.aopdemo.aspect;
 import static spring.exercise.aopdemo.aspect.AopExpressions.expAddress;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.aspectj.lang.*;
 import org.aspectj.lang.annotation.*;
@@ -17,6 +18,8 @@ import spring.exercise.aopdemo.Account;
 	@Order(2)
 public class MyDemoLoggingAspect {
 		
+	private Logger
+		logger = Logger.getLogger(getClass().getName());		
 	private final String
 		localExpAddress = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts(..))",
 		localExpAddress2 = "execution(* getFortune(..))";
@@ -30,7 +33,7 @@ public class MyDemoLoggingAspect {
 				method = proceedingJoinPoint.getSignature().toShortString();
 			
 		//	print the advised method
-			System.out.println("    > @Around\n      > " + method);
+			logger.info("    > @Around\n      > " + method);
 						
 		//	get the initial timestamp
 			long
@@ -51,7 +54,7 @@ public class MyDemoLoggingAspect {
 	
 		@After(localExpAddress)
 	public void afterRegardlessAccountAdvice() {
-			System.out.println("    > @After - so just you know when it fires.");
+			logger.info("    > @After - so just you know when it fires.");
 	}
 	
 		@AfterThrowing(
@@ -64,7 +67,7 @@ public class MyDemoLoggingAspect {
 		String
 			method = joinPoint.getSignature().toShortString();
 		
-		System.out.println("    > @AfterThrowing\n      > "
+		logger.info("    > @AfterThrowing\n      > "
 							+ method
 							+ "\n    > threw :\n      > " 
 							+ exception);				
@@ -80,7 +83,7 @@ public class MyDemoLoggingAspect {
 		String 
 			method = joinPoint.getSignature().toShortString();
 
-		System.out.println("    > @AfterReturning\n      > "
+		logger.info("    > @AfterReturning\n      > "
 							+ method
 							+"\n    > returned :\n      > " 
 							+ result);
@@ -99,7 +102,7 @@ public class MyDemoLoggingAspect {
 		MethodSignature 
 			methodSignature = (MethodSignature) joinPoint.getSignature();
 		
-		System.out.println("... > order 2 : 1st advice \n"
+		logger.info("... > order 2 : 1st advice \n"
 							+ "\n\n > Method: " 
 							+ methodSignature);
 				 		
@@ -107,13 +110,13 @@ public class MyDemoLoggingAspect {
 			args = joinPoint.getArgs();
 		
 		for (Object cache : args) {
-			System.out.println("   : " + cache);
+			logger.info("   : " + cache);
 			
 			if(cache instanceof Account) {				
 				Account 
 					account = (Account) cache;
 				
-				System.out.println("   ... account name: "
+				logger.info("   ... account name: "
 									+ account.getName()
 									+ "\n   ... account level: "
 									+ account.getLevel());

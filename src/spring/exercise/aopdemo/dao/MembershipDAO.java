@@ -1,5 +1,7 @@
 package spring.exercise.aopdemo.dao;
 
+import java.util.logging.Logger;
+
 import org.springframework.stereotype.Component;
 
 import spring.exercise.aopdemo.Account;
@@ -7,36 +9,38 @@ import spring.exercise.aopdemo.Account;
 @Component
 public class MembershipDAO {
 	
+	private Logger
+		logger = Logger.getLogger(getClass().getName());		
 	Account 
 		account;
 		
 	public void addAccount() {
 		
-		System.out.println(""+getClass()+"> addAccount method in progress");
+		logger.info(""+getClass()+"> addAccount method in progress");
 	}
 	
 	public void addSillyMember() {
 		
-		System.out.println("that maaaaad mate...");
+		logger.info("that maaaaad mate...");
 	}	
 	
 	public void addAnotherMember(String string, MembershipDAO accountDAO) {
-		System.out.println("method w/ 1 explicit parameter, and another as '*' ");
+		logger.info("method w/ 1 explicit parameter, and another as '*' ");
 	}
 	
 	public void goToSleep() {
-		System.out.println("S l E E P !");
+		logger.info("S l E E P !");
 	}
 	
 	public void setAccount(Account account) {
 		
 		this.account = account;
-		System.out.println("account set");
+		logger.info("account set");
 	}
 	
 	public Account getAccount() {
 		
-		System.out.println("returning: "+account);
+		logger.info("returning: "+account);
 		return account;
 	}
 }

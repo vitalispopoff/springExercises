@@ -1,6 +1,7 @@
 package spring.exercise.aopdemo.dao;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,8 @@ import spring.exercise.aopdemo.Account;
 @Component
 public class AccountDAO {
 	
+	private Logger
+		logger = Logger.getLogger(getClass().getName());
 	private String
 		name,
 		serviceCode;
@@ -34,11 +37,11 @@ public class AccountDAO {
 	
 	public void addAccount(Account account, boolean vipFlag) {
 		
-		System.out.println(getClass() + ": addAccount method init");
+		logger.info(getClass() + ": addAccount method init");
 	}
 	
 	public void setAccount() {
-		System.out.println("account set");
+		logger.info("account set");
 	}
 
 }

@@ -3,8 +3,7 @@ package spring.exercise.aopdemo;
 public class Account {
 		
 	private String 
-		name;
-	
+		name;	
 	private String
 		level;
 	

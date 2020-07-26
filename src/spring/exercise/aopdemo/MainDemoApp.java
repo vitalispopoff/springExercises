@@ -1,11 +1,15 @@
 package spring.exercise.aopdemo;
 
+import java.util.logging.Logger;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import spring.exercise.aopdemo.dao.AccountDAO;
 import spring.exercise.aopdemo.service.TrafficFortuneService;
 
 public class MainDemoApp {
+	
+	private static Logger 
+		logger = Logger.getLogger(MainDemoApp.class.getName());
 	
 	public static void main (String[] args) {
 									
@@ -14,13 +18,15 @@ public class MainDemoApp {
 		TrafficFortuneService 
 			fortuneService = context.getBean("trafficFortuneService", TrafficFortuneService.class);		
 		
-		System.out.println("\n main > ");
+		logger.info("\n main > ");
 		
-		String data = fortuneService.getFortune();
-		System.out.println("      > " + data);
-		System.out.println(" done >\n");
+		String 
+			data = fortuneService.getFortune();
 		
-								
+		logger.info("      > " 
+					+ data
+					+ "\n    done >\n");
+										
 		context.close();		 
 	}
 }
