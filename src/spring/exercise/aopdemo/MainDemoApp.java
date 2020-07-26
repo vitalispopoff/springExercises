@@ -22,7 +22,10 @@ public class MainDemoApp {
 			boolean 
 				tripWire = true;
 			
-			accounts = accountDAO.findAccounts(tripWire); 
+			System.out.println("\n > > Case 1\n");
+			accounts = accountDAO.findAccounts(false);
+			System.out.println("\n > > Case 2\n");
+			accounts = accountDAO.findAccounts(true); 
 		}
 		catch (Exception e) {System.out.println("\n > main catch exception: " + e);}
 		

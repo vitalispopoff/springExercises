@@ -19,7 +19,12 @@ public class MyDemoLoggingAspect {
 		
 	private final String
 		localExpAddress = "execution(* spring.exercise.aopdemo.dao.AccountDAO.findAccounts(..))";
-				
+		
+		@After(localExpAddress)
+	public void afterRegardlessAccountAdvice() {
+			System.out.println("    > @After - so just you know when it fires.");
+	}
+	
 		@AfterThrowing(
 				pointcut = localExpAddress,
 				throwing = "exception")
@@ -36,7 +41,7 @@ public class MyDemoLoggingAspect {
 		//	logging the exception
 		System.out.println("    > threw :\n      > " + exception);				
 	}
-		
+				
 		@AfterReturning(
 				pointcut = localExpAddress,
 				returning = "result")
