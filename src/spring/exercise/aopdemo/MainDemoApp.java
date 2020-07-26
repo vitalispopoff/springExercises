@@ -2,7 +2,6 @@ package spring.exercise.aopdemo;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import spring.exercise.aopdemo.aspect.MyDemoLoggingAspect;
 import spring.exercise.aopdemo.dao.*;
 
 public class MainDemoApp {
@@ -31,6 +30,6 @@ public class MainDemoApp {
 		membershipDAO.getAccount();
 		
 						
-		context.close();		
+		context.close();		 
 	}
 }
