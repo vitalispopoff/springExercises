@@ -42,12 +42,13 @@ public class MyDemoLoggingAspect {
 				result = proceedingJoinPoint.proceed();
 			} 
 			catch (Exception  e) {
-				
-				// log exception
 				logger.warning(e.getMessage());
-				
-				// give custom message
 				result = "crap.";
+				
+				logger.info(result.toString());
+				
+				// rethrow exception
+				throw e;
 			}
 			
 			long
